@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://120.77.45.136:3306/spring_security?characterEncoding=UTF-8&nullCatalogMeansCurrent=true
+    username: springuser
+    password: 123456
