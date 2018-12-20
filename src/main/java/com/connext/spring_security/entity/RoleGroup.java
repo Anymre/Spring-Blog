@@ -1,6 +1,5 @@
 package com.connext.spring_security.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,35 +10,30 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**@Author: Marcus
+/**
+ * @Author: Marcus
  * @Date: 2018/12/20 10:21
  * @Version 1.0
  */
+
 @Entity
 @Data
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class RoleGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true, length = 11)
-    private String phone;
-    private String password;
-    private String nickname;
-    private String email;
+    @Column(unique = true)
+    private String name;
+    @ManyToMany
+    private List<Authority> authorities;
     @CreatedDate
     private Date createTime;
     @LastModifiedDate
     private Date modifiedTime;
-    @OneToMany(mappedBy = "user",cascade = {CascadeType.ALL},fetch = FetchType.EAGER,orphanRemoval = true)
-    private List<Message> messages;
-    @ManyToMany
-    private List<RoleGroup> roleGroups;
 
-    public User(String phone, String nickname, String email) {
-        this.phone = phone;
-        this.nickname = nickname;
-        this.email = email;
+    public RoleGroup(String name) {
+        this.name = name;
     }
 }

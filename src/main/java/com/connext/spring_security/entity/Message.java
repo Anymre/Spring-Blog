@@ -28,6 +28,7 @@ public class Message {
     @CreatedDate
     private Date createTime;
     @LastModifiedDate
+    private Date modifiedTime;
     private Date commentTime;
     @ManyToOne
     private User user;
@@ -47,6 +48,7 @@ public class Message {
                 ", title='" + title + '\'' +
                 ", context='" + context + '\'' +
                 ", createTime=" + createTime +
+                ", modifiedTime=" + modifiedTime +
                 ", commentTime=" + commentTime +
                 ", user=" + user.getNickname() +
                 '}';
