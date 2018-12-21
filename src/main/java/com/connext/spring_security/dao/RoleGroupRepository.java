@@ -1,6 +1,5 @@
 package com.connext.spring_security.dao;
 
-import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.entity.RoleGroup;
 import org.springframework.data.repository.CrudRepository;
 

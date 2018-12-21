@@ -1,9 +1,6 @@
 package com.connext.spring_security.dao;
 
-import com.connext.spring_security.entity.Authority;
-import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

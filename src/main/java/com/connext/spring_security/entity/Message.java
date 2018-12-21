@@ -32,7 +32,7 @@ public class Message {
     private Date commentTime;
     @ManyToOne
     private User user;
-    @OneToMany(mappedBy = "message",cascade = {CascadeType.ALL},fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "message",cascade = {CascadeType.ALL},fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Comment> comments;
 
     public Message(String title, String context,User user) {

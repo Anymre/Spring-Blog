@@ -1,6 +1,5 @@
 package com.connext.spring_security.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -32,7 +31,8 @@ public class User {
     private Date createTime;
     @LastModifiedDate
     private Date modifiedTime;
-    @OneToMany(mappedBy = "user",cascade = {CascadeType.ALL},fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY,orphanRemoval = true)
+    @JoinColumn(name = "nickname")
     private List<Message> messages;
     @ManyToMany
     private List<RoleGroup> roleGroups;

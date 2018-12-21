@@ -9,11 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 /**
  * @Author: Marcus
  * @Date: 2018/12/20 10:36
@@ -40,6 +35,6 @@ public class AuthTest {
 
     @Test
     public void auth() {
-        userService.test();
+        //userService.test();
     }
 }

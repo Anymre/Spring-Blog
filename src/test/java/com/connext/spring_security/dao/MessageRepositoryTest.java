@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 /**
@@ -18,15 +19,22 @@ import java.util.Optional;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class MessageRepositoryTest {
     @Autowired
     UserRepository userRepository;
     @Autowired
     MessageRepository messageRepository;
-@Test
-    public void MessageUser(){
-    Optional<Message> message =messageRepository.findById(2);
-    User user=message.map(m->m.getUser()).orElse(new User());
-    System.out.println(user);
-}
+
+    @Test
+    public void addMessage() {
+
+    }
+
+    @Test
+    public void MessageUser() {
+        Optional<Message> message = messageRepository.findById(2);
+        User user = message.map(m -> m.getUser()).orElse(new User());
+        System.out.println(user);
+    }
 }

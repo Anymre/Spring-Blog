@@ -1,7 +1,6 @@
 package com.connext.spring_security.dao;
 
 import com.connext.spring_security.entity.Authority;
-import com.connext.spring_security.entity.Comment;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
