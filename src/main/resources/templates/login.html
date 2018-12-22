@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index</title>
+    <div th:include="header :: header"></div>
+    <script type="text/javascript" src="/js/login.js"></script>
+    <link type="text/css" rel="stylesheet"
+          href="https://v3.bootcss.com/examples/signin/signin.css">
+    <link rel="stylesheet" type="text/css" href="/css/xcConfirm.css"/>
+    <script src="/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="container form-signin">
+
+    <!--<form class="form-signin" action="#">-->
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="username" class="sr-only">Phone</label>
+        <input type="tel" id="username" class="form-control" placeholder="Phone" required autofocus="autofocus" minlength="11" maxlength="11">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="PassWord" required minlength="4" maxlength="16">
+        <div class="checkbox">
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <button class="btn btn-default" type="button" name="getCode" id="getCode" value="找回密码"
+                        onclick="" ></button>
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit " name="submit" onclick="login()">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" >Sign up</button>
+    <!--</form>-->
+</div>
+
+</body>
+</html>

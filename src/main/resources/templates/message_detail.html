@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index</title>
+    <div th:include="header :: header"></div>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h3>Hello!</h3>
+            <p>This is the message detail.</p>
+        </div>
+    </div>
+    <div id="addbutton" class="btn-group btn-group-lg" role="group" aria-label="...">
+        <button type="button" onclick="window.location.href='/message/1'" class="btn btn-default">返回</button>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title" th:text="${message.title}"></h3>
+        </div>
+        <div class="panel-footer" th:text="${message.time}"></div>
+        <div class="panel-body"th:text="${message.context}">
+        </div>
+    </div>
+</div>
+</body>
+</html>
