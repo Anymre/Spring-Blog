@@ -4,6 +4,7 @@ import com.connext.spring_security.service.impl.UserDetailServiceImpl;
 import com.connext.spring_security.util.Redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,7 +27,7 @@ import java.io.PrintWriter;
  * @Date: 2018/12/21 10:18
  * @Version 1.0
  */
-@Configuration
+//@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailServiceImpl userDetailService;
@@ -35,17 +36,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/*/*.*").permitAll()
+                .antMatchers(HttpMethod.POST, "/message/*").access("hasAuthority(\"message_add\") or hasRole(\"admin\")")
+                .antMatchers(HttpMethod.PUT, "/message/*").access("hasAuthority(\"message_change\") or hasRole(\"admin\")")
+                .antMatchers(HttpMethod.DELETE, "/message/*").access("hasAuthority(\"message_delete\") or hasRole(\"admin\")")
+                .antMatchers("/user/*/*").hasRole("admin")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").failureHandler(new AuthenticationFailureHandler() {
+                .formLogin().loginPage("/login").successHandler(new AuthenticationSuccessHandler() {
+            @Override
+            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                httpServletResponse.setContentType("application/json;charset=utf-8");
+                PrintWriter out = httpServletResponse.getWriter();
+                out.write("{\"state\":\"Access\"}");
+                out.flush();
+                out.close();
+            }
+        }).failureHandler(new AuthenticationFailureHandler() {
             @Override
             public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
                 httpServletResponse.setContentType("application/json;charset=utf-8");
                 PrintWriter out = httpServletResponse.getWriter();
-                out.write("{\"state\":\""+e.getMessage()+"\"}");
+                out.write("{\"state\":\"" + e.getMessage() + "\"}");
                 out.flush();
                 out.close();
             }

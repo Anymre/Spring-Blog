@@ -3,6 +3,7 @@ package com.connext.spring_security.service.impl;
 import com.connext.spring_security.dao.UserRepository;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.util.Redis;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
@@ -23,23 +24,27 @@ import java.util.Optional;
  */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
+    private final UserRepository userRepository;
+    private final Redis redis;
+
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    Redis redis;
+    public UserDetailServiceImpl(UserRepository userRepository, Redis redis) {
+        this.userRepository = userRepository;
+        this.redis = redis;
+    }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws BadCredentialsException{
+    public UserDetails loadUserByUsername(String username) throws BadCredentialsException {
         Optional<User> user = userRepository.findByPhone(username);
         if (user.isPresent()) {
             if (!redis.validPhone(username)) {
                 throw new BadCredentialsException("you must to wait 120s!");
             }
             List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-            org.springframework.security.core.userdetails.User auth_user = new org.springframework.security.core.userdetails.User(user.get().getPhone(), user.get().getPassword(), list);
-            return auth_user;
+            return new org.springframework.security.core.userdetails.User(user.get().getPhone(), user.get().getPassword(), list);
         } else {
             throw new BadCredentialsException("no reg!");
         }
     }
 }
+

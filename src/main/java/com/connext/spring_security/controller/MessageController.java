@@ -4,9 +4,7 @@ import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +21,31 @@ public class MessageController {
 
     @GetMapping("/all")
     public List<Message> allMessage() {
-        messageService.findALl().stream().map(m->m.getUser().getNickname()).forEach(System.out::println);
         return messageService.findALl();
+    }
+
+    @GetMapping("/my")
+    public List<Message> myMessage() {
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public String getMessage() {
+        return "get";
+    }
+
+    @PostMapping("/{id}")
+    public String addMessage() {
+        return "add";
+    }
+
+    @PutMapping("/{id}")
+    public String changeMessage() {
+        return "change";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteMessage() {
+        return "delete";
     }
 }

@@ -21,10 +21,14 @@ import java.util.List;
 @Service
 @Transactional(rollbackOn = {Exception.class})
 public class MessageServiceImpl implements MessageService {
+    private final MessageRepository messageRepository;
+    private final UserRepository userRepository;
+
     @Autowired
-    MessageRepository messageRepository;
-    @Autowired
-    UserRepository userRepository;
+    public MessageServiceImpl(MessageRepository messageRepository, UserRepository userRepository) {
+        this.messageRepository = messageRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<Message> findALl() {
@@ -35,7 +39,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void addMessage(Message message,Integer userId) {
+    public void addMessage(Message message, Integer userId) {
         User user = userRepository.findById(userId).orElse(new User());
         message.setUser(user);
         user.getMessages().add(message);
