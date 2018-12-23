@@ -7,6 +7,7 @@ import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
  * @Version 1.0
  */
 @Service
+@Slf4j
 @Transactional(rollbackOn = {Exception.class})
 public class UserServiceImpl implements UserService {
     private final
@@ -39,18 +41,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> allUser() {
-        return null;
+        Iterable<User> users = userRepository.findAll();
+        List<User> list = new ArrayList<>();
+        users.forEach(list::add);
+        return list;
     }
 
     @Override
-    public String register(User user) {
-        return null;
+    public boolean register(User user) {
+        try {
+            userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            log.error("register fail");
+            return false;
+        }
     }
 
     @Override
-    public boolean addRole(Integer userId, List<String> roles) {
+    public boolean setRole(Integer userId, List<String> roles) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
+            user.get().getRoleGroups().clear();
             List<RoleGroup> roleGroups = new ArrayList<>();
             roles.forEach(role -> {
                 Optional<RoleGroup> roleGroup = roleGroupRepository.findByName(role);
@@ -64,17 +76,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public boolean addAuthority(Integer userId, List<String> authorities) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
-            List<Authority> listAuthority = new ArrayList<>();
-            authorities.stream().map(authorityRepository::findByName).forEach(authority -> authority.ifPresent(listAuthority::add));
-            user.get().getAuthorities().addAll(listAuthority);
-            userRepository.save(user.get());
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

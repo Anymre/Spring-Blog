@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RoleServiceImplTest {
     @Autowired
     RoleService roleService;
-    String role="test1";
+    String role="normal";
     @Test
     void findAll() {
         System.out.println(roleService.findAll());

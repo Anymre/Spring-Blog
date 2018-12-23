@@ -13,15 +13,25 @@ import java.util.List;
 public interface MessageService {
     /**
      * get all messages
+     *
      * @return all messages
      */
     List<Message> findALl();
 
     /**
      * add a message
+     *
      * @param message a message
      * @param userId  the owner of the message
      * @return true or false
      */
     void addMessage(Message message, Integer userId);
+
+    /**
+     * delete a message
+     *
+     * @param messageId a message
+     */
+    void deleteMessage(Integer messageId);
+
 }

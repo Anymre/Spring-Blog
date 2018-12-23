@@ -36,8 +36,6 @@ public class User {
     private List<Message> messages;
     @ManyToMany
     private List<RoleGroup> roleGroups;
-    @ManyToMany
-    private List<Authority> authorities;
 
     public User(String phone, String nickname, String email) {
         this.phone = phone;

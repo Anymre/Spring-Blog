@@ -27,7 +27,7 @@ class UserServiceImplTest {
     UserService userService;
     @Autowired
     UserRepository userRepository;
-    List<String> roles = new ArrayList<String>(Arrays.asList("admin", "normal"));
+    List<String> roles = new ArrayList<String>(Arrays.asList("normal"));
     List<String> auth = new ArrayList<String>(Arrays.asList("message_add", "message_delete"));
     User user=new User("18438627095","Marcus","18438627095@163.com");
 

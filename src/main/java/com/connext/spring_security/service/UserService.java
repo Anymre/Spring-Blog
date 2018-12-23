@@ -21,7 +21,7 @@ public interface UserService {
      * @param user Information of user.
      * @return States of this.
      */
-    String register(User user);
+    boolean register(User user);
 
     /**
      * Add roles for user
@@ -30,12 +30,5 @@ public interface UserService {
      * @param roles Roles
      * @return true or false
      */
-    boolean addRole(Integer userId, List<String> roles);
-
-    /**Add authoritiest for user
-     * @param userId The user who want to add authorities
-     * @param authorities Authorities
-     * @return true or false
-     */
-    boolean addAuthority(Integer userId,List<String> authorities);
+    boolean setRole(Integer userId, List<String> roles);
 }

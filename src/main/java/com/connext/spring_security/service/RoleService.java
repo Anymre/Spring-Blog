@@ -29,4 +29,11 @@ public interface RoleService {
      * @return state
      */
     boolean deleteRole(String role);
+
+    /**Add authoritiest for role
+     * @param roleId The role who want to add authorities
+     * @param authorities Authorities
+     * @return true or false
+     */
+    boolean setAuthority(Integer roleId,List<String> authorities);
 }
