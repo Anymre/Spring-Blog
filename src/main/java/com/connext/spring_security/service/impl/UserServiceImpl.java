@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Integer getUser(String phone) {
+        return userRepository.findByPhone(phone).get().getId();
+    }
+
+    @Override
     public boolean register(User user) {
         try {
             userRepository.save(user);

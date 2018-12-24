@@ -15,6 +15,13 @@ public interface UserService {
      * @return All user.
      */
     List<User> allUser();
+
+    /**
+     * Find a user.
+     * @param phone user's phone
+     * @return a user.
+     */
+    Integer getUser(String phone);
     /**
      * register a user
      *

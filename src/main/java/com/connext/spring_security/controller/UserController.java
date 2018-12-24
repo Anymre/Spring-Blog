@@ -2,6 +2,7 @@ package com.connext.spring_security.controller;
 
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.UserService;
+import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,27 +16,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private final UserService userService;
+
     @Autowired
-    UserService UserService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/{id}")
-    public String getUser() {
-        return "get";
+    public List<User> allUser() {
+        return userService.allUser();
     }
 
     @PostMapping("/{id}")
-    public String addUser() {
-        return "add";
+    public String addUser(User user) {
+        boolean result = userService.register(user);
+        return ReturnState.returnState(result);
     }
-
-    @PutMapping("/{id}")
-    public String changeUser() {
-        return "change";
+    @PostMapping("/{id}/role")
+    public String setRole(@PathVariable Integer id, @RequestParam List<String> roles){
+        boolean result=userService.setRole(id,roles);
+        return ReturnState.returnState(result);
     }
-
-    @DeleteMapping("/{id}")
-    public String deleteUser() {
-        return "delete";
-    }
-
 }

@@ -2,8 +2,11 @@ package com.connext.spring_security.controller;
 
 import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.service.MessageService;
+import com.connext.spring_security.service.UserService;
+import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,36 +19,46 @@ import java.util.List;
 @RestController
 @RequestMapping("/message")
 public class MessageController {
+    private final MessageService messageService;
+    private final UserService userService;
+
     @Autowired
-    MessageService messageService;
+    public MessageController(MessageService messageService, UserService userService) {
+        this.messageService = messageService;
+        this.userService = userService;
+    }
 
     @GetMapping("/all")
     public List<Message> allMessage() {
         return messageService.findALl();
     }
 
-    @GetMapping("/my")
-    public List<Message> myMessage() {
-        return null;
+    @GetMapping("/{id}/my")
+    public List<Message> myMessage(@PathVariable Integer id) {
+        return messageService.findMyMessage(id);
     }
 
     @GetMapping("/{id}")
-    public String getMessage() {
-        return "get";
+    public Message getMessage(@PathVariable Integer id) {
+        return messageService.findMessage(id);
     }
 
     @PostMapping("/{id}")
-    public String addMessage() {
-        return "add";
+    public String addMessage(@RequestParam Message message) {
+        boolean result=messageService.addMessage(message);
+        return ReturnState.returnState(result);
     }
 
     @PutMapping("/{id}")
-    public String changeMessage() {
-        return "change";
+    public String changeMessage(@RequestParam Message message) {
+        boolean result= messageService.changeMessage(message);
+        return ReturnState.returnState(result);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteMessage() {
-        return "delete";
+    public String deleteMessage(@PathVariable Integer id) {
+        boolean result= messageService.deleteMessage(id);
+        return ReturnState.returnState(result);
     }
+
 }

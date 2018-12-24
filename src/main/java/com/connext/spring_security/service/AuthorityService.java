@@ -17,6 +17,8 @@ public interface AuthorityService {
      */
     List<Authority> findAll();
 
+
+
     /**
      * add authority
      * @param authority authority

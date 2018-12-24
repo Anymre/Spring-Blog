@@ -24,24 +24,13 @@ public class Comment {
     private Integer id;
     private String context;
     @ManyToOne
-    private Message message;
-    @ManyToOne
     private User user;
     @CreatedDate
     private Date createTime;
     @LastModifiedDate
     private Date modifiedTime;
 
-    public Comment(String context, Message message, User user) {
+    public Comment(String context) {
         this.context = context;
-        this.message = message;
-        this.user = user;
-    }
-
-    public Comment(String context, Message message, Date createTime, Date modifiedTime) {
-        this.context = context;
-        this.message = message;
-        this.createTime = createTime;
-        this.modifiedTime = modifiedTime;
     }
 }
