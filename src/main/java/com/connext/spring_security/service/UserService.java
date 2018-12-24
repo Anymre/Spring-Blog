@@ -22,6 +22,13 @@ public interface UserService {
      * @return a user.
      */
     Integer getUser(String phone);
+
+    /**
+     * Find a user.
+     * @param id user's id
+     * @return a user.
+     */
+    User getUser(Integer id);
     /**
      * register a user
      *

@@ -50,5 +50,9 @@ class UserServiceImplTest {
     void addRole() {
         assertTrue(userService.setRole(1, roles));
     }
+    @Test
+    void allUser(){
+        System.out.println(userService.allUser());
+    }
 
 }

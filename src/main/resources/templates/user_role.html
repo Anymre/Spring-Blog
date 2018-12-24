@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:include="header :: header"></div>
+    <title>admin</title>
+</head>
+<body>
+<div class="container">
+    <nav class="header-panel">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">用户管理</a></li>
+            <li role="presentation"><a href="#">角色管理</a></li>
+            <li role="presentation"><a href="#">权限管理</a></li>
+            <li role="presentation"><a href="/logout">注销</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item" th:text="|id:  ${user.id}||"></li>
+        <li class="list-group-item" th:text="|nickname:  ${user.nickname}|"></li>
+        <li class="list-group-item" th:text="|phone:  ${user.phone}|"></li>
+        <li class="list-group-item" th:text="|email:  ${user.email}|"></li>
+        <li class="list-group-item" th:text="|createTime:  ${user.createTime}|"></li>
+    </ul>
+</div>
+<div class="container">
+
+</div>
+</body>
+</html>
