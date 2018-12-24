@@ -1,6 +1,8 @@
 package com.connext.spring_security.service.impl;
 
 import com.connext.spring_security.dao.UserRepository;
+import com.connext.spring_security.entity.Authority;
+import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.util.Redis;
 import lombok.Data;
@@ -13,9 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Marcus
@@ -23,6 +27,7 @@ import java.util.Optional;
  * @Version 1.0
  */
 @Service
+@Transactional(rollbackOn = {Exception.class})
 public class UserDetailServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
     private final Redis redis;
@@ -41,10 +46,27 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 throw new BadCredentialsException("you must to wait 120s!");
             }
             List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+            List<RoleGroup> roleGroups = user.get().getRoleGroups();
+            List<String> authorities = new ArrayList<>();
+            for (RoleGroup i : roleGroups) {
+                authorities.addAll(i.getAuthorities().stream().map(Authority::getName).collect(Collectors.toList()));
+            }
+            list.addAll(authorities.stream().map(UserAuthority::new).collect(Collectors.toList()));
             return new org.springframework.security.core.userdetails.User(user.get().getPhone(), user.get().getPassword(), list);
         } else {
             throw new BadCredentialsException("no reg!");
         }
+    }
+}
+class UserAuthority implements GrantedAuthority {
+    String authority;
+    public UserAuthority(String authority) {
+        this.authority=authority;
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.authority;
     }
 }
 

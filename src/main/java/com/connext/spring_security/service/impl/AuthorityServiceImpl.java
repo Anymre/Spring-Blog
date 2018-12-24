@@ -6,7 +6,9 @@ import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.service.AuthorityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
  * @Version 1.0
  */
 @Slf4j
+@Service
+@Transactional(rollbackOn = {Exception.class})
 public class AuthorityServiceImpl implements AuthorityService {
     private  final AuthorityRepository authorityRepository;
 

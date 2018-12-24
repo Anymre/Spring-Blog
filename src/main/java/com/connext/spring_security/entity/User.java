@@ -37,9 +37,10 @@ public class User {
     @ManyToMany
     private List<RoleGroup> roleGroups;
 
-    public User(String phone, String nickname, String email) {
+    public User(String phone, String password,String nickname, String email) {
         this.phone = phone;
         this.nickname = nickname;
         this.email = email;
+        this.password=password;
     }
 }

@@ -26,6 +26,7 @@ class RoleServiceImplTest {
     @Autowired
     RoleService roleService;
     String role="normal";
+    List<String> auths = new ArrayList<String>(Arrays.asList("message_change","message_delete"));
     @Test
     void findAll() {
         System.out.println(roleService.findAll());
@@ -37,6 +38,7 @@ class RoleServiceImplTest {
     }
 
     @Test
-    void deleteRole() {
+    void setAuth() {
+        assertTrue(roleService.setAuthority(6,auths));
     }
 }

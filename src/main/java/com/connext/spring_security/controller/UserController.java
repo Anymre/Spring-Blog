@@ -3,6 +3,7 @@ package com.connext.spring_security.controller;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.UserService;
 import com.connext.spring_security.util.ReturnState;
+import com.connext.spring_security.util.UseBCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class UserController {
 
     @PostMapping("/{id}")
     public String addUser(User user) {
+        user.setPassword(UseBCrypt.Encoder(user.getPassword()));
         boolean result = userService.register(user);
         return ReturnState.returnState(result);
     }

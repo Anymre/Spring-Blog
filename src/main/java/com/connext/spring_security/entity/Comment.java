@@ -25,6 +25,8 @@ public class Comment {
     private String context;
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Message message;
     @CreatedDate
     private Date createTime;
     @LastModifiedDate

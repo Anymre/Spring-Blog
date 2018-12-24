@@ -29,7 +29,7 @@ class MessageServiceImplTest {
 
     @Test
     void addMessage() {
-        messageService.addMessage(amessage,1);
+        messageService.addMessage(amessage);
     }
 
     @Test
