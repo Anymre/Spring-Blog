@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN">
 <head>
     <div th:include="header :: header"></div>
     <title>admin</title>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <link href="/css/bootstrap-select.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <nav class="header-panel">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">用户管理</a></li>
-            <li role="presentation"><a href="#">角色管理</a></li>
-            <li role="presentation"><a href="#">权限管理</a></li>
-            <li role="presentation"><a href="/logout">注销</a></li>
-        </ul>
-    </nav>
-</div>
+<div th:include="header :: nav"></div>
 <div class="container">
     <ul class="list-group">
         <li class="list-group-item" th:text="|id:  ${user.id}||"></li>
@@ -25,7 +18,40 @@
     </ul>
 </div>
 <div class="container">
-
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <h2>为此用户选择角色</h2>
+                <select id="mySelect" class="selectpicker form-control" data-live-search="true" multiple
+                        title="Choose one of the following..." data-actions-box="true">
+                    <optgroup label="可供选择的角色">
+                        <option th:each="role : ${roles}" th:text="${role.name}"></option>
+                    </optgroup>
+                </select>
+                <button class="btn btn-danger" onclick="auth()">确认</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function auth() {
+        var auth = $("#mySelect").val()
+        userId = [[${user.id}]]
+        $.post("/user/" + userId + "/role", {
+                role: auth.toString()
+            },
+            function (res) {
+                var result=eval("("+res+")")
+                if(result.state){
+                    alert("成功添加角色："+auth)
+                }
+                else{
+                    alert("失败")
+                }
+            }
+        )
+    }
+</script>
 </html>

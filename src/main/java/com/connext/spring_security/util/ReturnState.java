@@ -8,8 +8,8 @@ package com.connext.spring_security.util;
 public class ReturnState {
     public static String returnState(boolean result){
         if (result == true) {
-            return "{\"state\":\"true\"}";
+            return "{\"state\":true}";
         }
-        return "{\"state\":\"false\"}";
+        return "{\"state\":false}";
     }
 }

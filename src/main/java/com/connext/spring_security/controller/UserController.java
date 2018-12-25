@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,7 +56,8 @@ public class UserController {
     }
     @PostMapping("/{id}/role")
     @ResponseBody
-    public String setRole(@PathVariable Integer id, @RequestParam List<String> roles) {
+    public String setRole(@PathVariable Integer id, @RequestParam String role) {
+        List<String> roles= Arrays.asList(role.split(","));
         boolean result = userService.setRole(id, roles);
         return ReturnState.returnState(result);
     }
