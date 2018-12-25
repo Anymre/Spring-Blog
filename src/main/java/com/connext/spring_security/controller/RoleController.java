@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Marcus
@@ -29,34 +30,38 @@ public class RoleController {
     }
 
     @GetMapping
-    public String getRoles(Model model){
-        model.addAttribute("roles",roleService.findAll());
+    public String getRoles(Model model) {
+        model.addAttribute("roles", roleService.findAll());
         return "roles";
     }
 
     @PostMapping
     @ResponseBody
     public String addRole(@RequestParam String role) {
-        boolean result= roleService.addRole(role);
+        boolean result = roleService.addRole(role);
         return ReturnState.returnState(result);
     }
+
     @DeleteMapping
     @ResponseBody
     public String deleteRole(@RequestParam Integer id) {
-        boolean result= roleService.deleteRole(id);
+        boolean result = roleService.deleteRole(id);
         return ReturnState.returnState(result);
     }
+
     @GetMapping("/{id}/auth")
-    public String authrity(@PathVariable Integer id,Model model){
-        model.addAttribute("role",roleService.findOne(id));
-        model.addAttribute("authorities",authorityService.findAll());
+    public String authrity(@PathVariable Integer id, Model model) {
+        model.addAttribute("role", roleService.findOne(id));
+        model.addAttribute("hasauthorities", roleService.findOne(id).getAuthorities().stream().map(u -> u.getName()).collect(Collectors.toList()));
+        model.addAttribute("authorities", authorityService.findAll());
         return "role_auth";
     }
+
     @PostMapping("/{id}/auth")
     @ResponseBody
-    public String setAuthrity(@PathVariable Integer id, @RequestParam String authority){
-        List<String> authorities= Arrays.asList(authority.split(","));
-        boolean result= roleService.setAuthority(id,authorities);
+    public String setAuthrity(@PathVariable Integer id, @RequestParam String authority) {
+        List<String> authorities = Arrays.asList(authority.split(","));
+        boolean result = roleService.setAuthority(id, authorities);
         return ReturnState.returnState(result);
     }
 }

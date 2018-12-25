@@ -33,6 +33,9 @@
 </body>
 <script th:inline="javascript">
     /*<![CDATA[*/
+    $(document).ready(function(){
+        $("#mySelect").selectpicker('val', [[${hasauthorities}]])
+    });
     function role() {
         var auth = $("#mySelect").val()
         userId = [[${role.id}]]

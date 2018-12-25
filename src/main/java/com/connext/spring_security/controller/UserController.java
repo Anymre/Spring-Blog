@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Marcus
@@ -32,7 +35,7 @@ public class UserController {
 
     @GetMapping("/all")
     public String allUser(Model model) {
-        model.addAttribute("users",userService.allUser());
+        model.addAttribute("users", userService.allUser());
         return "users";
     }
 
@@ -48,16 +51,19 @@ public class UserController {
         boolean result = userService.register(user);
         return ReturnState.returnState(result);
     }
+
     @GetMapping("/{id}/role")
     public String getUserRole(@PathVariable Integer id, Model model) {
-        model.addAttribute("user",userService.getUser(id));
-        model.addAttribute("roles",roleService.findAll());
+        model.addAttribute("user", userService.getUser(id));
+        model.addAttribute("hasrole", userService.getUser(id).getRoleGroups().stream().map(u -> u.getName()).collect(Collectors.toList()));
+        model.addAttribute("roles", roleService.findAll());
         return "user_role";
     }
+
     @PostMapping("/{id}/role")
     @ResponseBody
     public String setRole(@PathVariable Integer id, @RequestParam String role) {
-        List<String> roles= Arrays.asList(role.split(","));
+        List<String> roles = Arrays.asList(role.split(","));
         boolean result = userService.setRole(id, roles);
         return ReturnState.returnState(result);
     }
