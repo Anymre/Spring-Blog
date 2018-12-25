@@ -20,7 +20,7 @@ public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true)
+    @Column(unique = true,nullable=false)
     private String name;
     @CreatedDate
     private Date createTime;

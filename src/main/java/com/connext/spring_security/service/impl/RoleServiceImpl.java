@@ -41,20 +41,24 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public boolean addRole(String role) {
-        try {
-            roleGroupRepository.save(new RoleGroup(role));
-            return true;
-        } catch (Exception e) {
-            log.error(e.toString());
-            return false;
-        }
+    public RoleGroup findOne(Integer id) {
+        return roleGroupRepository.findById(id).get();
     }
 
     @Override
-    public boolean deleteRole(String role) {
+    public boolean addRole(String role) {
+        Optional<RoleGroup> roleGroup = roleGroupRepository.findByName(role);
+        if (roleGroup.isPresent()) {
+            return false;
+        }
+        roleGroupRepository.save(new RoleGroup(role));
+        return true;
+    }
+
+    @Override
+    public boolean deleteRole(Integer id) {
         try {
-            roleGroupRepository.delete(roleGroupRepository.findByName(role).get());
+            roleGroupRepository.deleteById(id);
             return true;
         } catch (Exception e) {
             log.error(e.toString());

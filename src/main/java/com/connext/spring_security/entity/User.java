@@ -22,7 +22,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true, length = 11)
+    @Column(unique = true, length = 11,nullable=false)
     private String phone;
     private String password;
     private String nickname;

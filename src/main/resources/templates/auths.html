@@ -7,29 +7,29 @@
 <body>
 <div th:include="header :: nav"></div>
 <div class="container">
-    <h3>选择角色来修改</h3>
+    <h3>选择权限来修改</h3>
     <div class="form-inline">
         <div class="form-group">
             <label for="exampleInputName2">Name</label>
             <input type="text" class="form-control" id="exampleInputName2" placeholder="the name of new Role">
         </div>
-        <button type="submit" class="btn btn-success" onclick="add()">增加一个角色</button>
+        <button type="submit" class="btn btn-success" onclick="add()">增加一个权限</button>
     </div>
     <table class="table table-hover">
-        <div th:each="role:${roles}">
+        <div th:each="auth:${auths}">
             <tr>
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <a th:href="|/role/${role.id}/auth|">
-                            <h3 class="panel-title" th:text="${role.name}"></h3>
+                        <a>
+                            <h3 class="panel-title" th:text="${auth.name}"></h3>
                         </a>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item" th:text="${role.modifiedTime}"></li>
+                        <li class="list-group-item" th:text="${auth.modifiedTime}"></li>
                         <li class="list-group-item">
                             <div class="btn-group" role="group" aria-label="...">
                                 <button type="button"
-                                        class="btn btn-default " th:onclick="|del(${role.id})|">删除
+                                        class="btn btn-default " th:onclick="|del(${auth.id})|">删除
                                 </button>
                             </div>
                         </li>
@@ -43,13 +43,13 @@
 <script type="text/javascript">
     function add() {
         $.ajax({
-            url: '/role',
+            url: '/auth',
             type: 'POST',
-            data: {role: $("#exampleInputName2").val()},
+            data: {auth: $("#exampleInputName2").val()},
             success: function (res) {
                 var result = eval("(" + res + ")")
                 if (result.state) {
-                    alert("成功添加角色：" + $("#exampleInputName2").val())
+                    alert("成功添加权限：" + $("#exampleInputName2").val())
                     window.location.reload()
                 } else {
                     alert("失败")
@@ -58,11 +58,11 @@
         });
     }
 
-    function del(role) {
+    function del(auth) {
         $.ajax({
-            url: '/role',
+            url: '/auth',
             type: 'DELETE',
-            data: {id: role},
+            data: {id: auth},
             success: function (res) {
                 var result = eval("(" + res + ")")
                 if (result.state) {

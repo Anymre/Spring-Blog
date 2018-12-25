@@ -17,6 +17,13 @@ public interface RoleService {
     List<RoleGroup> findAll();
 
     /**
+     * find a role
+     * @param id role's id
+     * @return a RoleGroup
+     */
+    RoleGroup findOne(Integer id);
+
+    /**
      * add role
      * @param role the role
      * @return state
@@ -25,10 +32,10 @@ public interface RoleService {
 
     /**
      * delete role
-     * @param role the role
+     * @param id the role
      * @return state
      */
-    boolean deleteRole(String role);
+    boolean deleteRole(Integer id);
 
     /**Add authoritiest for role
      * @param roleId The role who want to add authorities

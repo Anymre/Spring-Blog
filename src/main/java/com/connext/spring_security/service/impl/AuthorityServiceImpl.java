@@ -48,9 +48,9 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public boolean deleteAuthority(String authority) {
+    public boolean deleteAuthority(Integer id) {
         try {
-            authorityRepository.delete(authorityRepository.findByName(authority).get());
+            authorityRepository.deleteById(id);
             return true;
         } catch (Exception e) {
             log.error(e.toString());

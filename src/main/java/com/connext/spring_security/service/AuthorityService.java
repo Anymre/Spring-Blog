@@ -28,8 +28,8 @@ public interface AuthorityService {
 
     /**
      * delete authority
-     * @param authority the authority
+     * @param id the id of authority
      * @return state
      */
-    boolean deleteAuthority(String authority);
+    boolean deleteAuthority(Integer id);
 }

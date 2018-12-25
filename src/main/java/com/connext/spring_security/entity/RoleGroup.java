@@ -24,7 +24,7 @@ public class RoleGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true)
+    @Column(unique = true,nullable=false)
     private String name;
     @ManyToMany
     private List<Authority> authorities;
