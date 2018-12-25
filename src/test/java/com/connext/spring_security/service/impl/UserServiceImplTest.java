@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+//@Transactional
 class UserServiceImplTest {
     @Autowired
     UserService userService;
@@ -33,7 +33,7 @@ class UserServiceImplTest {
     UserRepository userRepository;
     List<String> roles = new ArrayList<String>(Arrays.asList("normal"));
     List<String> auth = new ArrayList<String>(Arrays.asList("message_change", "message_delete"));
-    User user = new User("18438627095","123456","Marcus", "18438627095@163.com");
+    User user = new User("12345678901","123456","Normal", "12345678901@163.com");
 
     @Test
     void UserAuth() {

@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,20 +29,24 @@ import java.io.PrintWriter;
  * @Date: 2018/12/21 10:18
  * @Version 1.0
  */
-//@Configuration
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final UserDetailServiceImpl userDetailService;
+    private final Redis redis;
+
     @Autowired
-    private UserDetailServiceImpl userDetailService;
-    @Autowired
-    private Redis redis;
+    public WebSecurityConfig(UserDetailServiceImpl userDetailService, Redis redis) {
+        this.userDetailService = userDetailService;
+        this.redis = redis;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/*/*.*").permitAll()
-                .antMatchers("/user/*/role","/role/**").hasAuthority("user_all")
+                .antMatchers("/*/*.*","/user/add").permitAll()
+                .antMatchers("/user/**").hasAuthority("user_all")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").successHandler(new AuthenticationSuccessHandler() {

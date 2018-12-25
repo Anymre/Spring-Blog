@@ -44,7 +44,7 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/add")
     @ResponseBody
     public String addUser(User user) {
         user.setPassword(UseBCrypt.Encoder(user.getPassword()));
