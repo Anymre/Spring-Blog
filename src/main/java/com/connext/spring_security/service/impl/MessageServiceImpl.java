@@ -90,7 +90,7 @@ public class MessageServiceImpl implements MessageService {
             messageRepository.deleteById(messageId);
             return true;
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -106,11 +106,9 @@ public class MessageServiceImpl implements MessageService {
 
 
     public boolean userisHasAuthority(String authority) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication().getDetails();
         Optional<Authority> theAuthority = authorityRepository.findByName(authority);
-        if (theAuthority.isPresent()) {
-            userDetails.getAuthorities().contains(theAuthority.get());
+        if (theAuthority.isPresent() && SecurityContextHolder.getContext()
+                .getAuthentication().getAuthorities().contains(theAuthority.get())) {
             return true;
         }
         return false;
