@@ -1,5 +1,6 @@
 package com.connext.spring_security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -31,8 +32,8 @@ public class User {
     private Date createTime;
     @LastModifiedDate
     private Date modifiedTime;
+    @JsonIgnoreProperties(value = { "user" })
     @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY,orphanRemoval = true)
-    @JoinColumn(name = "nickname")
     private List<Message> messages;
     @ManyToMany
     private List<RoleGroup> roleGroups;

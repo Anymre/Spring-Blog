@@ -7,6 +7,8 @@ import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
  * @Date: 2018/12/21 10:10
  * @Version 1.0
  */
-@RestController
+@Controller
 @RequestMapping("/message")
 public class MessageController {
     private final MessageService messageService;
@@ -28,9 +30,28 @@ public class MessageController {
         this.userService = userService;
     }
 
-    @GetMapping("/all")
-    public List<Message> allMessage() {
-        return messageService.findALl();
+    @GetMapping("/{id}")
+    public String getMessage(@PathVariable Integer id, Model model) {
+        model.addAttribute("message",messageService.findMessage(id));
+        return "detail";
+    }
+
+    @PostMapping("/{id}")
+    public String addMessage(@RequestParam Message message) {
+        boolean result = messageService.addMessage(message);
+        return ReturnState.returnState(result);
+    }
+
+    @PutMapping("/{id}")
+    public String changeMessage(@RequestParam Message message) {
+        boolean result = messageService.changeMessage(message);
+        return ReturnState.returnState(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteMessage(@PathVariable Integer id) {
+        boolean result = messageService.deleteMessage(id);
+        return ReturnState.returnState(result);
     }
 
     @GetMapping("/{id}/my")
@@ -38,27 +59,9 @@ public class MessageController {
         return messageService.findMyMessage(id);
     }
 
-    @GetMapping("/{id}")
-    public Message getMessage(@PathVariable Integer id) {
-        return messageService.findMessage(id);
+    @PostMapping("/{id}/comment")
+    public String comment(@PathVariable Integer id,@RequestParam String comment){
+        messageService.comment(id,comment);
+        return "redirect:/message/"+id;
     }
-
-    @PostMapping("/{id}")
-    public String addMessage(@RequestParam Message message) {
-        boolean result=messageService.addMessage(message);
-        return ReturnState.returnState(result);
-    }
-
-    @PutMapping("/{id}")
-    public String changeMessage(@RequestParam Message message) {
-        boolean result= messageService.changeMessage(message);
-        return ReturnState.returnState(result);
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteMessage(@PathVariable Integer id) {
-        boolean result= messageService.deleteMessage(id);
-        return ReturnState.returnState(result);
-    }
-
 }
