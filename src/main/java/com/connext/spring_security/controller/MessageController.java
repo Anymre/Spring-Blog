@@ -49,7 +49,10 @@ public class MessageController {
     @PostMapping("/{id}/change")
     public String changeMessage(@PathVariable Integer id,@RequestParam String title,@RequestParam String context) {
         boolean result = messageService.changeMessage(id,title,context);
-        return "redirect:/message/my";
+        if(result){
+            return "redirect:/message/my";
+        }
+        return "redirect:/error";
     }
 
     @DeleteMapping("/{id}")

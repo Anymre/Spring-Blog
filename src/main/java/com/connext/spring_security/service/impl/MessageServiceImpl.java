@@ -11,6 +11,7 @@ import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -70,7 +71,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public boolean changeMessage(Integer id, String title, String context) {
-        String authority = "message_update";
+        String authority = "message_change";
         Optional<Message> oldMessage = messageRepository.findById(id);
         boolean canOrNot = oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority));
         if (canOrNot) {
@@ -106,9 +107,10 @@ public class MessageServiceImpl implements MessageService {
 
 
     public boolean userisHasAuthority(String authority) {
-        Optional<Authority> theAuthority = authorityRepository.findByName(authority);
-        if (theAuthority.isPresent() && SecurityContextHolder.getContext()
-                .getAuthentication().getAuthorities().contains(theAuthority.get())) {
+        GrantedAuthority grantedAuthority=new UserAuthority(authority);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
+        if (user.getAuthorities().contains(grantedAuthority)) {
             return true;
         }
         return false;

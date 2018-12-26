@@ -15,6 +15,7 @@ public class WebPathConfiguration implements WebMvcConfigurer {
         registry.addViewController("/message/my/add").setViewName("message_add");
         registry.addViewController("/user/reg/add").setViewName("reg");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/error").setViewName("error");
     }
 }
 
