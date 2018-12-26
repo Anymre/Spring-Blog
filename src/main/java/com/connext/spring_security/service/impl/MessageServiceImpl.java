@@ -124,9 +124,6 @@ public class MessageServiceImpl implements MessageService {
 
     public List<Message> sort(List<Message> list) {
         Collections.sort(list, ((o1, o2) -> {
-            if (o1.getCommentTime() == null | o1.getCommentTime().equals("")) {
-                o1.setCommentTime(o1.getCreateTime());
-            }
             if (o1.getCommentTime().before(o2.getCommentTime())) {
                 return 1;
             } else {

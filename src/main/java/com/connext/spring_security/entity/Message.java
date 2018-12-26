@@ -31,6 +31,7 @@ public class Message {
     private Date createTime;
     @LastModifiedDate
     private Date modifiedTime;
+    @CreatedDate
     private Date commentTime;
     @ManyToOne
     private User user;
