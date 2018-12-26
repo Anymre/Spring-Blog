@@ -1,9 +1,10 @@
 package com.connext.spring_security.dao;
 
 import com.connext.spring_security.entity.Message;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
 
 /**
@@ -19,5 +20,11 @@ public interface MessageRepository extends CrudRepository<Message, Integer> {
      */
     List<Message> findAllByUserId(Integer user_id);
 
+    /**
+     * page of messages
+     * @param page page of messages
+     * @return messages
+     */
+    Page<Message> findAll(Pageable page);
 }
 

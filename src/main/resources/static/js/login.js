@@ -6,7 +6,7 @@ function login() {
         },
         function (res) {
         if(res.state=="Access"){
-            window.location.replace("/index");
+            window.location.replace("/message/index/6");
         }
             alert(res.state);
         });

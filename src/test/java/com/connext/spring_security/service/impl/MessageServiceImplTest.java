@@ -27,14 +27,22 @@ class MessageServiceImplTest {
     UserRepository userRepository;
     Message amessage = new Message("1", "1", new User());
 
-//    @Test
-//    void addMessage() {
-//        messageService.addMessage(amessage);
-//    }
+    @Test
+    void addMessage() {
+        messageService.addMessage(amessage.getTitle(),amessage.getContext());
+    }
 
     @Test
-    void findALl() {
-        List<Message> messageList = messageService.findALl();
+    void findAll() {
+        List<Message> messageList = messageService.findAll("2");
+        messageList.forEach(System.out::println);
+        messageList = messageService.findAll("1");
+        messageList.forEach(System.out::println);
+        messageList = messageService.findAll("1");
+        messageList.forEach(System.out::println);
+        messageList = messageService.findAll("0");
+        messageList.forEach(System.out::println);
+        messageList = messageService.findAll("0");
         messageList.forEach(System.out::println);
     }
 }

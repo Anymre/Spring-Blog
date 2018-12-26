@@ -13,10 +13,10 @@ import java.util.List;
 public interface MessageService {
     /**
      * get all messages
-     *
+     * @param page page
      * @return all messages
      */
-    List<Message> findALl();
+    List<Message> findAll(String page);
 
     /**
      * get user's messages

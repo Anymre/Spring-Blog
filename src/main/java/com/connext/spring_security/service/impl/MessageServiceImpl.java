@@ -10,6 +10,7 @@ import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,8 +43,20 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> findALl() {
-        Iterable<Message> messages = messageRepository.findAll();
+    public List<Message> findAll(String page) {
+        Iterable<Message> messages = null;
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        switch (Integer.parseInt(page)) {
+            case 0:
+                messages = messageRepository.findAll(pageRequest.previous());
+                break;
+            case 1:
+                messages = messageRepository.findAll(pageRequest.next());
+                break;
+            default:
+                messages = messageRepository.findAll(pageRequest.first());
+                break;
+        }
         List<Message> list = new ArrayList<>();
         messages.forEach(list::add);
         return sort(list);
@@ -107,7 +120,7 @@ public class MessageServiceImpl implements MessageService {
 
 
     public boolean userisHasAuthority(String authority) {
-        GrantedAuthority grantedAuthority=new UserAuthority(authority);
+        GrantedAuthority grantedAuthority = new UserAuthority(authority);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
         if (user.getAuthorities().contains(grantedAuthority)) {

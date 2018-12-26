@@ -29,7 +29,16 @@ public class MessageController {
         this.messageService = messageService;
         this.userService = userService;
     }
-
+    @GetMapping("/index/{page}")
+    public String index(Model model,@PathVariable String page){
+        model.addAttribute("messages",messageService.findAll(page));
+        return "index";
+    }
+    @GetMapping("/index/admin/{page}")
+    public String indexAdmin(Model model,@PathVariable String page){
+        model.addAttribute("messages",messageService.findAll(page));
+        return "index_admin";
+    }
     @GetMapping("/{id}")
     public String getMessage(@PathVariable Integer id, Model model) {
         model.addAttribute("message", messageService.findMessage(id));
