@@ -3,10 +3,10 @@ package com.connext.spring_security.service.impl;
 import com.connext.spring_security.dao.AuthorityRepository;
 import com.connext.spring_security.dao.RoleGroupRepository;
 import com.connext.spring_security.dao.UserRepository;
-import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.UserService;
+import com.connext.spring_security.util.Redis;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,7 @@ import java.util.Optional;
 @Slf4j
 @Transactional(rollbackOn = {Exception.class})
 public class UserServiceImpl implements UserService {
+    private final Redis redis;
     private final
     UserRepository userRepository;
     private final
@@ -33,7 +34,8 @@ public class UserServiceImpl implements UserService {
     RoleGroupRepository roleGroupRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, AuthorityRepository authorityRepository, RoleGroupRepository roleGroupRepository) {
+    public UserServiceImpl(Redis redis, UserRepository userRepository, AuthorityRepository authorityRepository, RoleGroupRepository roleGroupRepository) {
+        this.redis = redis;
         this.userRepository = userRepository;
         this.authorityRepository = authorityRepository;
         this.roleGroupRepository = roleGroupRepository;
@@ -58,15 +60,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean register(User user) {
-        try {
-            userRepository.save(user);
-            return true;
-        } catch (Exception e) {
-            log.error("register fail");
-            return false;
+    public String register(User user, String code) {
+        if (!redis.vaildCode(user.getPhone(), code)) {
+            return "Code error";
         }
+        Optional<User> olduser = userRepository.findByPhone(user.getPhone());
+        if(olduser.isPresent()){
+            return "false";
+        }
+        userRepository.save(user);
+        return "true";
     }
+
 
     @Override
     public boolean setRole(Integer userId, List<String> roles) {

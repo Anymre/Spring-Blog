@@ -1,6 +1,7 @@
 package com.connext.spring_security.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -34,6 +35,7 @@ public class Message {
     @ManyToOne
     private User user;
     @OneToMany(mappedBy = "message",cascade = {CascadeType.ALL},fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnoreProperties(value = { "message" })
     private List<Comment> comments;
 
     public Message(String title, String context,User user) {

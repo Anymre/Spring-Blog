@@ -33,9 +33,10 @@ public interface UserService {
      * register a user
      *
      * @param user Information of user.
+     * @param code verify code
      * @return States of this.
      */
-    boolean register(User user);
+    String register(User user,String code);
 
     /**
      * Add roles for user

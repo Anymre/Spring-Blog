@@ -1,6 +1,7 @@
 package com.connext.spring_security.service.impl;
 
 import com.connext.spring_security.dao.AuthorityRepository;
+import com.connext.spring_security.dao.CommentRepository;
 import com.connext.spring_security.dao.MessageRepository;
 import com.connext.spring_security.dao.UserRepository;
 import com.connext.spring_security.entity.Authority;
@@ -9,15 +10,14 @@ import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @Author: Marcus
@@ -30,12 +30,14 @@ public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public MessageServiceImpl(MessageRepository messageRepository, UserRepository userRepository, AuthorityRepository authorityRepository) {
+    public MessageServiceImpl(MessageRepository messageRepository, UserRepository userRepository, AuthorityRepository authorityRepository, CommentRepository commentRepository) {
         this.messageRepository = messageRepository;
         this.userRepository = userRepository;
         this.authorityRepository = authorityRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -43,15 +45,15 @@ public class MessageServiceImpl implements MessageService {
         Iterable<Message> messages = messageRepository.findAll();
         List<Message> list = new ArrayList<>();
         messages.forEach(list::add);
-        return list;
+        return sort(list);
     }
 
     @Override
-    public List<Message> findMyMessage(Integer id) {
-        Iterable<Message> messages = messageRepository.findAllByUserId(id);
+    public List<Message> findMyMessage() {
+        Iterable<Message> messages = messageRepository.findAllByUserId(getUser().getId());
         List<Message> list = new ArrayList<>();
         messages.forEach(list::add);
-        return list;
+        return sort(list);
     }
 
     @Override
@@ -60,20 +62,21 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public boolean addMessage(Message message) {
-        message.setUser(getUser());
-        getUser().getMessages().add(message);
-        userRepository.save(getUser());
+    public boolean addMessage(String title, String context) {
+        Message message = new Message(title, context, getUser());
+        messageRepository.save(message);
         return true;
     }
 
     @Override
-    public boolean changeMessage(Message message) {
+    public boolean changeMessage(Integer id, String title, String context) {
         String authority = "message_update";
-        Optional<Message> oldMessage = messageRepository.findById(message.getId());
-        if (oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority))) {
-            oldMessage.get().setTitle(message.getTitle());
-            oldMessage.get().setContext(message.getContext());
+        Optional<Message> oldMessage = messageRepository.findById(id);
+        boolean canOrNot = oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority));
+        if (canOrNot) {
+            oldMessage.get().setTitle(title);
+            oldMessage.get().setContext(context);
+            messageRepository.save(oldMessage.get());
             return true;
         }
         return false;
@@ -93,9 +96,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void comment(Integer messageId, String context) {
         Optional<Message> oldMessage = messageRepository.findById(messageId);
-        if (oldMessage.isPresent()){
-            oldMessage.get().getComments().add(new Comment(context));
-            oldMessage.get().setCommentTime(new Date());
+        if (oldMessage.isPresent()) {
+            Comment comment = new Comment(context, getUser(), oldMessage.get());
+            commentRepository.save(comment);
+            oldMessage.get().setCommentTime(comment.getCreateTime());
             messageRepository.save(oldMessage.get());
         }
     }
@@ -113,9 +117,23 @@ public class MessageServiceImpl implements MessageService {
     }
 
     public User getUser() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication().getDetails();
-        return userRepository.findByPhone(userDetails.getUsername()).get();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
+        return userRepository.findByPhone(user.getUsername()).get();
+    }
+
+    public List<Message> sort(List<Message> list) {
+        Collections.sort(list, ((o1, o2) -> {
+            if (o1.getCommentTime() == null | o1.getCommentTime().equals("")) {
+                o1.setCommentTime(o1.getCreateTime());
+            }
+            if (o1.getCommentTime().before(o2.getCommentTime())) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }));
+        return list;
     }
 }
 

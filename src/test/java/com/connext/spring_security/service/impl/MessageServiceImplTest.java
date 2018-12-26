@@ -27,10 +27,10 @@ class MessageServiceImplTest {
     UserRepository userRepository;
     Message amessage = new Message("1", "1", new User());
 
-    @Test
-    void addMessage() {
-        messageService.addMessage(amessage);
-    }
+//    @Test
+//    void addMessage() {
+//        messageService.addMessage(amessage);
+//    }
 
     @Test
     void findALl() {

@@ -32,7 +32,9 @@ public class Comment {
     @LastModifiedDate
     private Date modifiedTime;
 
-    public Comment(String context) {
+    public Comment(String context, User user, Message message) {
         this.context = context;
+        this.user = user;
+        this.message = message;
     }
 }

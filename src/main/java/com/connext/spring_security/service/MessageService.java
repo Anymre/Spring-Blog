@@ -20,10 +20,9 @@ public interface MessageService {
 
     /**
      * get user's messages
-     * @param user_id the user's id
      * @return user's messages
      */
-    List<Message> findMyMessage(Integer user_id);
+    List<Message> findMyMessage();
 
     /**
      * get user's messages
@@ -34,19 +33,20 @@ public interface MessageService {
 
     /**
      * add a message
-     *
-     * @param message a message
+     * @param title the title
+     *                   * @param context the context
      * @return true or false
      */
-    boolean addMessage(Message message);
+    boolean addMessage(String title,String context);
 
     /**
      * change a message
-     *
-     * @param message a message
+     * @param id the message id
+     * @param title the title
+     * @param context the context
      * @return true or false
      */
-    boolean changeMessage(Message message);
+    boolean changeMessage(Integer id,String title,String context);
 
     /**
      * delete a message

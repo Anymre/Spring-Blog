@@ -3,6 +3,7 @@ package com.connext.spring_security.controller;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.RoleService;
 import com.connext.spring_security.service.UserService;
+import com.connext.spring_security.util.Redis;
 import com.connext.spring_security.util.ReturnState;
 import com.connext.spring_security.util.UseBCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -24,11 +23,13 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    private final Redis redis;
     private final UserService userService;
     private final RoleService roleService;
 
     @Autowired
-    public UserController(UserService userService, RoleService roleService) {
+    public UserController(Redis redis, UserService userService, RoleService roleService) {
+        this.redis = redis;
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -39,17 +40,24 @@ public class UserController {
         return "users";
     }
 
+    @PostMapping("/reg")
+    @ResponseBody
+    public String addUser(@RequestParam String phone, @RequestParam String password, @RequestParam String nickname, @RequestParam String email, @RequestParam String Code) {
+        User user = new User(phone, password, nickname, email);
+        user.setPassword(UseBCrypt.Encoder(user.getPassword()));
+        String result = userService.register(user, Code);
+        return result;
+    }
+
     @GetMapping("/{id}")
     public User getUser(@PathVariable Integer id) {
         return userService.getUser(id);
     }
 
-    @PostMapping("/add")
+    @GetMapping("/code/{phone}")
     @ResponseBody
-    public String addUser(User user) {
-        user.setPassword(UseBCrypt.Encoder(user.getPassword()));
-        boolean result = userService.register(user);
-        return ReturnState.returnState(result);
+    public void userRegCode(@PathVariable String phone) {
+        redis.getCode(phone);
     }
 
     @GetMapping("/{id}/role")

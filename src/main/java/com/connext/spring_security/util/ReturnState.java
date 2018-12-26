@@ -12,4 +12,7 @@ public class ReturnState {
         }
         return "{\"state\":false}";
     }
+    public static String returnSomething(String result){
+        return "{\"state\":"+result+"}";
+    }
 }

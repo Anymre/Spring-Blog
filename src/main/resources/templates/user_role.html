@@ -7,14 +7,14 @@
     <link href="/css/bootstrap-select.css" rel="stylesheet">
 </head>
 <body>
-<div th:include="header :: nav"></div>
+<div th:include="header :: nav-user"></div>
 <div class="container">
     <ul class="list-group">
         <li class="list-group-item" th:text="|id:  ${user.id}||"></li>
         <li class="list-group-item" th:text="|nickname:  ${user.nickname}|"></li>
         <li class="list-group-item" th:text="|phone:  ${user.phone}|"></li>
         <li class="list-group-item" th:text="|email:  ${user.email}|"></li>
-        <li class="list-group-item" th:text="|createTime:  ${user.createTime}|"></li>
+        <li class="list-group-item" th:text="|createTime:  ${#dates.format(user.createTime, 'yyyy/MMM/dd HH:mm')}|"></li>
     </ul>
 </div>
 <div class="container">

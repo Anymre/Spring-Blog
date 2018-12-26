@@ -1,5 +1,6 @@
 package com.connext.spring_security.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Component
+@Slf4j
 public class Redis {
   @Autowired StringRedisTemplate template;
   final String validsign = "phone:";
@@ -43,7 +45,7 @@ public class Redis {
       String verifyCode = String.valueOf(new Random().nextInt(899999) + 100000);
       setCode(phone,verifyCode);
     }
-    System.out.println(template.opsForValue().get(phone));
+    log.info(template.opsForValue().get(phone));
   }
   public boolean vaildCode(String phone,String verifyCode){
     if(template.opsForValue().get(phone)==verifyCode||template.opsForValue().get(phone).equals(verifyCode)) {return true;}

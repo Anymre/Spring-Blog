@@ -1,21 +1,22 @@
 function confirm() {
     event.preventDefault();
-    $.post("http://" + window.location.host + "/user/reg",
+    $.post("/user/reg",
         {
             phone: $("#username").val(),
             password: $("#password").val(),
+            nickname: $("#nickname").val(),
             email: $("#email").val(),
             Code: $("#code").val(),
         },
-        function (data) {
-            if (data == 'Access') {
+        function (res) {
+            if (res=="true") {
                 alert("reg success！")
-                window.location.href = "http://127.0.0.1:8080/user/login"
-            } else if (data == "False") {
-                var txt=  "user already exist!";
+                window.location.href = "/index"
+            } else if (res=="false") {
+                var txt = "user already exist!";
                 window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm);
             } else {
-                alert(data)
+                alert(res)
                 SlideVerify()
             }
         });
@@ -25,11 +26,9 @@ function confirm() {
 // 点击获取验证码操作
 function verify() {
     //发送验证码
-    $.get("http://" + window.location.host + "/user/reg/" + $("#username").val(),
+    $.get("/user/code/" + $("#username").val(),
         function (data) {
-            if (data == 'Access') {
-                alert("get mss success！")
-            }
+            alert("get mss success！")
         });
     var count = 60;
     var countdown = setInterval(CountDown, 1000);

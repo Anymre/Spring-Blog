@@ -12,7 +12,8 @@ import org.springframework.web.servlet.config.annotation.*;
 public class WebPathConfiguration implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/reg").setViewName("reg");
+        registry.addViewController("/message/my/add").setViewName("message_add");
+        registry.addViewController("/user/reg/add").setViewName("reg");
         registry.addViewController("/login").setViewName("login");
     }
 }

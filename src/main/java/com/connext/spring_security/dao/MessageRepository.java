@@ -1,6 +1,7 @@
 package com.connext.spring_security.dao;
 
 import com.connext.spring_security.entity.Message;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -17,5 +18,6 @@ public interface MessageRepository extends CrudRepository<Message, Integer> {
      * @return user's messages
      */
     List<Message> findAllByUserId(Integer user_id);
+
 }
 

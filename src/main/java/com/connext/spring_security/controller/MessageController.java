@@ -32,36 +32,42 @@ public class MessageController {
 
     @GetMapping("/{id}")
     public String getMessage(@PathVariable Integer id, Model model) {
-        model.addAttribute("message",messageService.findMessage(id));
+        model.addAttribute("message", messageService.findMessage(id));
         return "detail";
     }
 
-    @PostMapping("/{id}")
-    public String addMessage(@RequestParam Message message) {
-        boolean result = messageService.addMessage(message);
-        return ReturnState.returnState(result);
+    @PostMapping("/add")
+    public String addMessage(@RequestParam String title,@RequestParam String context) {
+        boolean result = messageService.addMessage(title,context);
+        return "redirect:/message/my";
     }
-
-    @PutMapping("/{id}")
-    public String changeMessage(@RequestParam Message message) {
-        boolean result = messageService.changeMessage(message);
-        return ReturnState.returnState(result);
+    @GetMapping("/{id}/change")
+    public String getChangeMessage(@PathVariable Integer id,Model model){
+        model.addAttribute("message",messageService.findMessage(id));
+        return "message_add_edit";
+    }
+    @PostMapping("/{id}/change")
+    public String changeMessage(@PathVariable Integer id,@RequestParam String title,@RequestParam String context) {
+        boolean result = messageService.changeMessage(id,title,context);
+        return "redirect:/message/my";
     }
 
     @DeleteMapping("/{id}")
+    @ResponseBody
     public String deleteMessage(@PathVariable Integer id) {
         boolean result = messageService.deleteMessage(id);
         return ReturnState.returnState(result);
     }
 
-    @GetMapping("/{id}/my")
-    public List<Message> myMessage(@PathVariable Integer id) {
-        return messageService.findMyMessage(id);
+    @GetMapping("/my")
+    public String myMessage(Model model) {
+        model.addAttribute("messages", messageService.findMyMessage());
+        return "my_message";
     }
 
     @PostMapping("/{id}/comment")
-    public String comment(@PathVariable Integer id,@RequestParam String comment){
-        messageService.comment(id,comment);
-        return "redirect:/message/"+id;
+    public String comment(@PathVariable Integer id, @RequestParam String comment) {
+        messageService.comment(id, comment);
+        return "redirect:/message/" + id;
     }
 }
