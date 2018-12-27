@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:include="header :: header"></div>
+    <meta charset="UTF-8">
+    <title>The Marcus' blog</title>
+</head>
+<body>
+<div th:include="header :: index"></div>
+<div class="container">
+    <div class="row" th:each ="i:${messages}">
+        <div class="col-lg-8">
+            <h2 th:text="${i.title}"></h2>
+            <p th:text="${#strings.abbreviate(i.context,200)}"></p>
+            <p><a class="btn btn-primary" th:href="|/message/${i.id}|" role="button">View details »</a></p>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-danger" th:onclick="|edit(${i.id})|">编辑</button>
+            <button class="btn btn-danger" th:onclick="|del(${i.id})|">删除</button>
+        </div>
+    </div>
+</div>
+<div th:include="header :: page"></div>
+</body>
+<script type="text/javascript">
+    function edit(id) {
+        window.location.replace(("/message/"+id+"/change"))
+    }
+
+    function del(id) {
+        $.ajax({
+            url: '/message/' + id,
+            type: 'DELETE',
+            success: function (res) {
+                var result = eval("(" + res + ")")
+                if (result.state) {
+                    alert("成功删除")
+                    window.location.reload()
+                }else{
+                    alert("您没有权限进行该操作")
+                }
+            }
+        });
+    }
+</script>
+</html>

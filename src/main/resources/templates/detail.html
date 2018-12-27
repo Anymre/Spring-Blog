@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:include="header :: header"></div>
+    <meta charset="UTF-8">
+    <title>The Marcus' blog</title>
+    <link href="/css/detail.css" rel="stylesheet">
+</head>
+<body>
+<div th:include="header :: index"></div>
+<div class="container">
+    <div class="col-sm-8 blog-main">
+        <div class="blog-post">
+            <h2 class="blog-post-title" th:text="${message.title}">New feature</h2>
+            <p class="blog-post-meta"
+               th:text="'Publish: '+${#dates.format(message.createTime, 'yyyy/MMM/dd HH:mm')}+'   By: '+${message.user.nickname}"></p>
+            <p th:text="${message.filename}"></p>
+            <p class="blog-post-meta"
+               th:if="${message.comments.size()} gt '0'" th:text="'评论数: '+${message.comments.size()}+'  最后评论时间: '+${#dates.format(message.commentTime, 'yyyy/MMM/dd HH:mm')}"></p>
+        </div>
+        <div class="panel panel-default" th:each="i:${message.comments}">
+            <div class="panel-body">
+                <P th:text="${i.user.nickname}+ '：'"></P>
+                <p th:text="${i.context}"></p>
+            </div>
+        </div>
+        <form th:action="'/message/'+${message.id}+'/comment'" method="post">
+            <div class="input-group">
+                <input type="text" id="comment" name="comment" class="form-control" placeholder="说点什么...">
+                <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">提交</button>
+            </span>
+            </div>
+        </form>
+        <nav>
+            <ul class="pager">
+                <li><a href="#">Previous</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>
