@@ -1,7 +1,6 @@
 package com.connext.spring_security.service;
 
 import com.connext.spring_security.entity.Authority;
-import com.connext.spring_security.entity.RoleGroup;
 
 import java.util.List;
 

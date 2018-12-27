@@ -15,10 +15,10 @@ import java.util.List;
 public interface MessageRepository extends CrudRepository<Message, Integer> {
     /**
      * get user's messages
-     * @param user_id the user
+     * @param userId the user
      * @return user's messages
      */
-    List<Message> findAllByUserId(Integer user_id);
+    List<Message> findAllByUserId(Integer userId);
 
     /**
      * page of messages

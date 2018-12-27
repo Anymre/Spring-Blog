@@ -2,7 +2,6 @@ package com.connext.spring_security.service.impl;
 
 import com.connext.spring_security.dao.AuthorityRepository;
 import com.connext.spring_security.entity.Authority;
-import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.service.AuthorityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

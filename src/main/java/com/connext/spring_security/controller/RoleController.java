@@ -1,5 +1,6 @@
 package com.connext.spring_security.controller;
 
+import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.service.AuthorityService;
 import com.connext.spring_security.service.RoleService;
 import com.connext.spring_security.util.ReturnState;
@@ -52,7 +53,7 @@ public class RoleController {
     @GetMapping("/{id}/auth")
     public String authrity(@PathVariable Integer id, Model model) {
         model.addAttribute("role", roleService.findOne(id));
-        model.addAttribute("hasauthorities", roleService.findOne(id).getAuthorities().stream().map(u -> u.getName()).collect(Collectors.toList()));
+        model.addAttribute("hasauthorities", roleService.findOne(id).getAuthorities().stream().map(Authority::getName).collect(Collectors.toList()));
         model.addAttribute("authorities", authorityService.findAll());
         return "role_auth";
     }

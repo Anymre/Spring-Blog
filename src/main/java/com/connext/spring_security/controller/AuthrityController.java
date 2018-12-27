@@ -1,14 +1,11 @@
 package com.connext.spring_security.controller;
 
-import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.service.AuthorityService;
 import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @Author: Marcus

@@ -1,6 +1,5 @@
 package com.connext.spring_security.service.impl;
 
-import com.connext.spring_security.dao.AuthorityRepository;
 import com.connext.spring_security.dao.RoleGroupRepository;
 import com.connext.spring_security.dao.UserRepository;
 import com.connext.spring_security.entity.RoleGroup;
@@ -29,15 +28,12 @@ public class UserServiceImpl implements UserService {
     private final
     UserRepository userRepository;
     private final
-    AuthorityRepository authorityRepository;
-    private final
     RoleGroupRepository roleGroupRepository;
 
     @Autowired
-    public UserServiceImpl(Redis redis, UserRepository userRepository, AuthorityRepository authorityRepository, RoleGroupRepository roleGroupRepository) {
+    public UserServiceImpl(Redis redis, UserRepository userRepository, RoleGroupRepository roleGroupRepository) {
         this.redis = redis;
         this.userRepository = userRepository;
-        this.authorityRepository = authorityRepository;
         this.roleGroupRepository = roleGroupRepository;
     }
 
@@ -51,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer getUser(String phone) {
-        return userRepository.findByPhone(phone).get().getId();
+        return userRepository.findByPhone(phone).orElse(new User()).getId();
     }
 
     @Override

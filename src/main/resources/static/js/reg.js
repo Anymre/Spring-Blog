@@ -6,7 +6,7 @@ function confirm() {
             password: $("#password").val(),
             nickname: $("#nickname").val(),
             email: $("#email").val(),
-            Code: $("#code").val(),
+            code: $("#code").val(),
         },
         function (res) {
             if (res=="true") {

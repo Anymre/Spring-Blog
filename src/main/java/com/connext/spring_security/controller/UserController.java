@@ -1,12 +1,13 @@
 package com.connext.spring_security.controller;
 
+import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.RoleService;
 import com.connext.spring_security.service.UserService;
 import com.connext.spring_security.util.Redis;
 import com.connext.spring_security.util.ReturnState;
-import com.connext.spring_security.util.UseBCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,11 +43,10 @@ public class UserController {
 
     @PostMapping("/reg")
     @ResponseBody
-    public String addUser(@RequestParam String phone, @RequestParam String password, @RequestParam String nickname, @RequestParam String email, @RequestParam String Code) {
+    public String addUser(@RequestParam String phone, @RequestParam String password, @RequestParam String nickname, @RequestParam String email, @RequestParam String code) {
         User user = new User(phone, password, nickname, email);
-        user.setPassword(UseBCrypt.Encoder(user.getPassword()));
-        String result = userService.register(user, Code);
-        return result;
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        return userService.register(user, code);
     }
 
     @GetMapping("/{id}")
@@ -63,7 +63,7 @@ public class UserController {
     @GetMapping("/{id}/role")
     public String getUserRole(@PathVariable Integer id, Model model) {
         model.addAttribute("user", userService.getUser(id));
-        model.addAttribute("hasrole", userService.getUser(id).getRoleGroups().stream().map(u -> u.getName()).collect(Collectors.toList()));
+        model.addAttribute("hasrole", userService.getUser(id).getRoleGroups().stream().map(RoleGroup::getName).collect(Collectors.toList()));
         model.addAttribute("roles", roleService.findAll());
         return "user_role";
     }

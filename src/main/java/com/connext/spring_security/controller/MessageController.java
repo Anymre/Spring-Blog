@@ -1,7 +1,6 @@
 package com.connext.spring_security.controller;
 
 import com.connext.spring_security.service.MessageService;
-import com.connext.spring_security.service.UserService;
 import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +42,7 @@ public class MessageController {
 
     @PostMapping("/add")
     public String addMessage(@RequestParam String title, @RequestParam String context) {
-        boolean result = messageService.addMessage(title, context.substring(0,200));
+        messageService.addMessage(title, context.substring(0,200));
         return "redirect:/message/my";
     }
 

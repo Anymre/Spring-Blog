@@ -11,6 +11,11 @@ import java.util.Optional;
  * @Version 1.0
  */
 public interface RoleGroupRepository extends CrudRepository<RoleGroup, Integer> {
+    /**
+     * find a role with name
+     * @param name role's name
+     * @return the role
+     */
     Optional<RoleGroup> findByName(String name);
 }
 

@@ -1,0 +1,149 @@
+2018-12-27 10:25:28.676  INFO 10800 --- [main] c.c.s.SpringSecurityApplication          : Starting SpringSecurityApplication on nkgw10nh1361 with PID 10800 (C:\Users\mengchao.lv\Desktop\spring_security\target\classes started by Mengchao.Lv in C:\Users\mengchao.lv\Desktop\spring_security)
+2018-12-27 10:25:28.676  INFO 10800 --- [main] c.c.s.SpringSecurityApplication          : No active profile set, falling back to default profiles: default
+2018-12-27 10:25:31.145  INFO 10800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:25:31.145  INFO 10800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:25:31.270  INFO 10800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125ms. Found 5 repository interfaces.
+2018-12-27 10:25:31.286  INFO 10800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:25:31.286  INFO 10800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:25:31.301  INFO 10800 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.AuthorityRepository.
+2018-12-27 10:25:31.301  INFO 10800 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.CommentRepository.
+2018-12-27 10:25:31.301  INFO 10800 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.MessageRepository.
+2018-12-27 10:25:31.317  INFO 10800 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.RoleGroupRepository.
+2018-12-27 10:25:31.317  INFO 10800 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.UserRepository.
+2018-12-27 10:25:31.317  INFO 10800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2018-12-27 10:25:32.005  INFO 10800 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4fafa9bb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-12-27 10:25:32.348  INFO 10800 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-12-27 10:25:32.380  INFO 10800 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-27 10:25:32.380  INFO 10800 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2018-12-27 10:25:32.380  INFO 10800 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\AuthenTec TrueSuite\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\Git\cmd;C:\Users\mengchao.lv\AppData\Local\Microsoft\WindowsApps;C:\Users\mengchao.lv\AppData\Local\GitHubDesktop\bin;C:\Users\mengchao.lv\AppData\Local\Programs\Fiddler;.]
+2018-12-27 10:25:32.520  INFO 10800 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-27 10:25:32.520  INFO 10800 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3625 ms
+2018-12-27 10:25:32.973  INFO 10800 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-12-27 10:25:33.051  INFO 10800 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2018-12-27 10:25:33.051  INFO 10800 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-12-27 10:25:33.176  INFO 10800 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2018-12-27 10:25:33.364  INFO 10800 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-12-27 10:25:41.840  INFO 3696 --- [main] c.c.s.SpringSecurityApplication          : Starting SpringSecurityApplication on nkgw10nh1361 with PID 3696 (C:\Users\mengchao.lv\Desktop\spring_security\target\classes started by Mengchao.Lv in C:\Users\mengchao.lv\Desktop\spring_security)
+2018-12-27 10:25:41.856  INFO 3696 --- [main] c.c.s.SpringSecurityApplication          : No active profile set, falling back to default profiles: default
+2018-12-27 10:25:42.981  INFO 3696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:25:42.981  INFO 3696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:25:43.106  INFO 3696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 109ms. Found 5 repository interfaces.
+2018-12-27 10:25:43.122  INFO 3696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:25:43.122  INFO 3696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:25:43.153  INFO 3696 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.AuthorityRepository.
+2018-12-27 10:25:43.153  INFO 3696 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.CommentRepository.
+2018-12-27 10:25:43.153  INFO 3696 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.MessageRepository.
+2018-12-27 10:25:43.153  INFO 3696 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.RoleGroupRepository.
+2018-12-27 10:25:43.153  INFO 3696 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.UserRepository.
+2018-12-27 10:25:43.153  INFO 3696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2018-12-27 10:25:43.731  INFO 3696 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$277c948d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-12-27 10:25:44.215  INFO 3696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-12-27 10:25:44.247  INFO 3696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-27 10:25:44.247  INFO 3696 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2018-12-27 10:25:44.262  INFO 3696 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\AuthenTec TrueSuite\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\Git\cmd;C:\Users\mengchao.lv\AppData\Local\Microsoft\WindowsApps;C:\Users\mengchao.lv\AppData\Local\GitHubDesktop\bin;C:\Users\mengchao.lv\AppData\Local\Programs\Fiddler;.]
+2018-12-27 10:25:44.466  INFO 3696 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-27 10:25:44.466  INFO 3696 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2485 ms
+2018-12-27 10:25:44.919  INFO 3696 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-12-27 10:25:44.997  INFO 3696 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2018-12-27 10:25:44.997  INFO 3696 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-12-27 10:25:45.153  INFO 3696 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2018-12-27 10:39:30.805  INFO 2180 --- [main] c.c.s.SpringSecurityApplication          : Starting SpringSecurityApplication on nkgw10nh1361 with PID 2180 (C:\Users\mengchao.lv\Desktop\spring_security\target\classes started by Mengchao.Lv in C:\Users\mengchao.lv\Desktop\spring_security)
+2018-12-27 10:39:30.821  INFO 2180 --- [main] c.c.s.SpringSecurityApplication          : No active profile set, falling back to default profiles: default
+2018-12-27 10:39:32.305  INFO 2180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:39:32.305  INFO 2180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:39:32.462  INFO 2180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 141ms. Found 5 repository interfaces.
+2018-12-27 10:39:32.477  INFO 2180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:39:32.477  INFO 2180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:39:32.509  INFO 2180 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.AuthorityRepository.
+2018-12-27 10:39:32.509  INFO 2180 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.CommentRepository.
+2018-12-27 10:39:32.524  INFO 2180 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.MessageRepository.
+2018-12-27 10:39:32.524  INFO 2180 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.RoleGroupRepository.
+2018-12-27 10:39:32.524  INFO 2180 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.UserRepository.
+2018-12-27 10:39:32.524  INFO 2180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 repository interfaces.
+2018-12-27 10:39:33.399  INFO 2180 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6e54789d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-12-27 10:39:33.743  INFO 2180 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-12-27 10:39:33.759  INFO 2180 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-27 10:39:33.759  INFO 2180 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2018-12-27 10:39:33.774  INFO 2180 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\AuthenTec TrueSuite\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\Git\cmd;C:\Users\mengchao.lv\AppData\Local\Microsoft\WindowsApps;C:\Users\mengchao.lv\AppData\Local\GitHubDesktop\bin;C:\Users\mengchao.lv\AppData\Local\Programs\Fiddler;.]
+2018-12-27 10:39:33.930  INFO 2180 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-27 10:39:33.930  INFO 2180 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3031 ms
+2018-12-27 10:39:34.352  INFO 2180 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-12-27 10:39:34.415  INFO 2180 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2018-12-27 10:39:34.415  INFO 2180 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-12-27 10:39:34.524  INFO 2180 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2018-12-27 10:39:34.665  INFO 2180 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-12-27 10:39:35.305  INFO 2180 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-12-27 10:39:35.321  INFO 2180 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2018-12-27 10:39:38.212  INFO 2180 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-12-27 10:39:39.087  INFO 2180 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2018-12-27 10:39:39.118  WARN 2180 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-12-27 10:39:39.259  INFO 2180 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-27 10:39:39.821  INFO 2180 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@46994f26, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d9af731, org.springframework.security.web.header.HeaderWriterFilter@3a80c534, org.springframework.security.web.authentication.logout.LogoutFilter@1efcba00, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@64ed18ec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16f34376, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75d539b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1bb172dd, org.springframework.security.web.session.SessionManagementFilter@36e3321e, org.springframework.security.web.access.ExceptionTranslationFilter@48ee3c2d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@11d1735e]
+2018-12-27 10:39:39.915  INFO 2180 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-12-27 10:39:39.931  INFO 2180 --- [main] c.c.s.SpringSecurityApplication          : Started SpringSecurityApplication in 9.813 seconds (JVM running for 10.902)
+2018-12-27 10:39:43.915  INFO 2180 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2018-12-27 10:39:43.915  INFO 2180 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2018-12-27 10:39:43.915  INFO 2180 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2018-12-27 10:40:19.416  INFO 2180 --- [http-nio-8080-exec-5] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2018-12-27 10:40:19.431  INFO 2180 --- [http-nio-8080-exec-5] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2018-12-27 10:40:19.775  INFO 2180 --- [http-nio-8080-exec-5] com.connext.spring_security.util.Redis   : 638849
+2018-12-27 10:40:25.650  WARN 2180 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2018-12-27 10:40:31.166  WARN 2180 --- [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2018-12-27 10:41:24.939  WARN 2180 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2018-12-27 10:41:39.189  INFO 2180 --- [http-nio-8080-exec-2] com.connext.spring_security.util.Redis   : 133788
+2018-12-27 10:41:45.017  WARN 2180 --- [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2018-12-27 10:42:54.356  INFO 2180 --- [http-nio-8080-exec-7] com.connext.spring_security.util.Redis   : 870138
+2018-12-27 10:42:59.697  WARN 2180 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'code' is not present]
+2018-12-27 10:43:38.140  INFO 4444 --- [main] c.c.s.SpringSecurityApplication          : Starting SpringSecurityApplication on nkgw10nh1361 with PID 4444 (C:\Users\mengchao.lv\Desktop\spring_security\target\classes started by Mengchao.Lv in C:\Users\mengchao.lv\Desktop\spring_security)
+2018-12-27 10:43:38.155  INFO 4444 --- [main] c.c.s.SpringSecurityApplication          : No active profile set, falling back to default profiles: default
+2018-12-27 10:43:39.725  INFO 4444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:43:39.741  INFO 4444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:43:39.881  INFO 4444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140ms. Found 5 repository interfaces.
+2018-12-27 10:43:39.897  INFO 4444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 10:43:39.897  INFO 4444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 10:43:39.913  INFO 4444 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.AuthorityRepository.
+2018-12-27 10:43:39.913  INFO 4444 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.CommentRepository.
+2018-12-27 10:43:39.913  INFO 4444 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.MessageRepository.
+2018-12-27 10:43:39.928  INFO 4444 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.RoleGroupRepository.
+2018-12-27 10:43:39.928  INFO 4444 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.UserRepository.
+2018-12-27 10:43:39.928  INFO 4444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 repository interfaces.
+2018-12-27 10:43:40.517  INFO 4444 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6ad6b989] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-12-27 10:43:41.142  INFO 4444 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-12-27 10:43:41.189  INFO 4444 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-27 10:43:41.189  INFO 4444 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2018-12-27 10:43:41.205  INFO 4444 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\AuthenTec TrueSuite\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\Git\cmd;C:\Users\mengchao.lv\AppData\Local\Microsoft\WindowsApps;C:\Users\mengchao.lv\AppData\Local\GitHubDesktop\bin;C:\Users\mengchao.lv\AppData\Local\Programs\Fiddler;.]
+2018-12-27 10:43:41.483  INFO 4444 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-27 10:43:41.483  INFO 4444 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3114 ms
+2018-12-27 10:43:41.952  INFO 4444 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-12-27 10:43:42.030  INFO 4444 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2018-12-27 10:43:42.030  INFO 4444 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-12-27 10:43:42.202  INFO 4444 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2018-12-27 10:43:42.430  INFO 4444 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-12-27 10:43:43.055  INFO 4444 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-12-27 10:43:43.070  INFO 4444 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2018-12-27 10:43:46.383  INFO 4444 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-12-27 10:43:47.519  INFO 4444 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2018-12-27 10:43:47.566  WARN 4444 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-12-27 10:43:47.738  INFO 4444 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-27 10:43:48.437  INFO 4444 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b1f36e5, org.springframework.security.web.context.SecurityContextPersistenceFilter@7945986a, org.springframework.security.web.header.HeaderWriterFilter@3006aef5, org.springframework.security.web.authentication.logout.LogoutFilter@1a34f8e2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6d77d269, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@aca2a0b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4936fbc6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52afcdd8, org.springframework.security.web.session.SessionManagementFilter@62158618, org.springframework.security.web.access.ExceptionTranslationFilter@a7fd77f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6f9b5f01]
+2018-12-27 10:43:48.562  INFO 4444 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-12-27 10:43:48.562  INFO 4444 --- [main] c.c.s.SpringSecurityApplication          : Started SpringSecurityApplication in 11.45 seconds (JVM running for 13.213)
+2018-12-27 10:43:54.082  INFO 4444 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2018-12-27 10:43:54.083  INFO 4444 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2018-12-27 10:43:54.095  INFO 4444 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2018-12-27 10:44:07.018  INFO 4444 --- [http-nio-8080-exec-9] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2018-12-27 10:44:07.020  INFO 4444 --- [http-nio-8080-exec-9] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2018-12-27 10:44:07.424  INFO 4444 --- [http-nio-8080-exec-9] com.connext.spring_security.util.Redis   : 311909
+2018-12-27 10:44:15.021  INFO 4444 --- [http-nio-8080-exec-2] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-12-27 10:44:51.567  INFO 4444 --- [Thread-26] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2018-12-27 10:44:52.692  INFO 4444 --- [Thread-26] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-12-27 10:44:52.692  INFO 4444 --- [Thread-26] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-12-27 10:44:52.724  INFO 4444 --- [Thread-26] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

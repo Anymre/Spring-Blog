@@ -5,14 +5,11 @@ import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.util.Redis;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -45,13 +42,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
             if (!redis.validPhone(username)) {
                 throw new BadCredentialsException("you must to wait 120s!");
             }
-            List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
             List<RoleGroup> roleGroups = user.get().getRoleGroups();
             List<String> authorities = new ArrayList<>();
             for (RoleGroup i : roleGroups) {
                 authorities.addAll(i.getAuthorities().stream().map(Authority::getName).collect(Collectors.toList()));
             }
-            list.addAll(authorities.stream().map(UserAuthority::new).collect(Collectors.toList()));
+            List<GrantedAuthority> list = new ArrayList<>(authorities.stream().map(UserAuthority::new).collect(Collectors.toList()));
             return new org.springframework.security.core.userdetails.User(user.get().getPhone(), user.get().getPassword(), list);
         } else {
             throw new BadCredentialsException("no reg!");
@@ -59,8 +55,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
     }
 }
 class UserAuthority implements GrantedAuthority {
-    String authority;
-    public UserAuthority(String authority) {
+    private String authority;
+    UserAuthority(String authority) {
         this.authority=authority;
     }
 

@@ -1,10 +1,8 @@
 package com.connext.spring_security.service.impl;
 
-import com.connext.spring_security.dao.AuthorityRepository;
 import com.connext.spring_security.dao.CommentRepository;
 import com.connext.spring_security.dao.MessageRepository;
 import com.connext.spring_security.dao.UserRepository;
-import com.connext.spring_security.entity.Authority;
 import com.connext.spring_security.entity.Comment;
 import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.entity.User;
@@ -14,12 +12,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: Marcus
@@ -31,20 +30,18 @@ import java.util.*;
 public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
     private final UserRepository userRepository;
-    private final AuthorityRepository authorityRepository;
     private final CommentRepository commentRepository;
 
     @Autowired
-    public MessageServiceImpl(MessageRepository messageRepository, UserRepository userRepository, AuthorityRepository authorityRepository, CommentRepository commentRepository) {
+    public MessageServiceImpl(MessageRepository messageRepository, UserRepository userRepository, CommentRepository commentRepository) {
         this.messageRepository = messageRepository;
         this.userRepository = userRepository;
-        this.authorityRepository = authorityRepository;
         this.commentRepository = commentRepository;
     }
 
     @Override
     public List<Message> findAll(String page) {
-        Iterable<Message> messages = null;
+        Iterable<Message> messages;
         PageRequest pageRequest = PageRequest.of(0, 5);
         switch (Integer.parseInt(page)) {
             case 0:
