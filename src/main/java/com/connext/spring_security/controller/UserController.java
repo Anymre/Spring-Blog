@@ -4,6 +4,7 @@ import com.connext.spring_security.entity.RoleGroup;
 import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.RoleService;
 import com.connext.spring_security.service.UserService;
+import com.connext.spring_security.util.AccountValidatorUtil;
 import com.connext.spring_security.util.Redis;
 import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,12 @@ public class UserController {
     @PostMapping("/reg")
     @ResponseBody
     public String addUser(@RequestParam String phone, @RequestParam String password, @RequestParam String nickname, @RequestParam String email, @RequestParam String code) {
-        User user = new User(phone, password, nickname, email);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        return userService.register(user, code);
+        if (AccountValidatorUtil.isMobile(phone) && AccountValidatorUtil.isPassword(password)) {
+            User user = new User(phone, password, nickname, email);
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            return userService.register(user, code);
+        }
+        return "phone or password error";
     }
 
     @GetMapping("/{id}")
