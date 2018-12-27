@@ -9,6 +9,7 @@ import com.connext.spring_security.entity.User;
 import com.connext.spring_security.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,7 +43,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findAll(String page) {
         Iterable<Message> messages;
-        PageRequest pageRequest = PageRequest.of(0, 5);
+        PageRequest pageRequest = PageRequest.of(0, 5, Sort.Direction.DESC,"commentTime");
         switch (Integer.parseInt(page)) {
             case 0:
                 messages = messageRepository.findAll(pageRequest.previous());

@@ -293,3 +293,45 @@ java.lang.NullPointerException: null
 
 2018-12-27 10:57:22.278  INFO 4200 --- [http-nio-8080-exec-7] com.connext.spring_security.util.Redis   : 808056
 2018-12-27 10:57:31.476  INFO 4200 --- [http-nio-8080-exec-6] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-12-27 14:10:08.736  INFO 10912 --- [main] c.c.s.SpringSecurityApplication          : Starting SpringSecurityApplication on nkgw10nh1361 with PID 10912 (C:\Users\mengchao.lv\Desktop\spring_security\target\classes started by Mengchao.Lv in C:\Users\mengchao.lv\Desktop\spring_security)
+2018-12-27 14:10:08.741  INFO 10912 --- [main] c.c.s.SpringSecurityApplication          : No active profile set, falling back to default profiles: default
+2018-12-27 14:10:10.094  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 14:10:10.094  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 14:10:10.212  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117ms. Found 5 repository interfaces.
+2018-12-27 14:10:10.216  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-12-27 14:10:10.216  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-12-27 14:10:10.247  INFO 10912 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.AuthorityRepository.
+2018-12-27 14:10:10.247  INFO 10912 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.CommentRepository.
+2018-12-27 14:10:10.247  INFO 10912 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.MessageRepository.
+2018-12-27 14:10:10.247  INFO 10912 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.RoleGroupRepository.
+2018-12-27 14:10:10.247  INFO 10912 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.connext.spring_security.dao.UserRepository.
+2018-12-27 14:10:10.247  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 repository interfaces.
+2018-12-27 14:10:10.763  INFO 10912 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$cd3e6d6f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-12-27 14:10:11.080  INFO 10912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-12-27 14:10:11.117  INFO 10912 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-27 14:10:11.117  INFO 10912 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2018-12-27 14:10:11.117  INFO 10912 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\AuthenTec TrueSuite\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\Git\cmd;C:\Users\mengchao.lv\AppData\Local\Microsoft\WindowsApps;C:\Users\mengchao.lv\AppData\Local\GitHubDesktop\bin;C:\Users\mengchao.lv\AppData\Local\Programs\Fiddler;.]
+2018-12-27 14:10:11.249  INFO 10912 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-27 14:10:11.249  INFO 10912 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2408 ms
+2018-12-27 14:10:11.565  INFO 10912 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-12-27 14:10:11.634  INFO 10912 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2018-12-27 14:10:11.634  INFO 10912 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-12-27 14:10:11.750  INFO 10912 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2018-12-27 14:10:11.881  INFO 10912 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-12-27 14:10:12.582  INFO 10912 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-12-27 14:10:12.582  INFO 10912 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2018-12-27 14:10:15.338  INFO 10912 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-12-27 14:10:16.202  INFO 10912 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2018-12-27 14:10:16.255  WARN 10912 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-12-27 14:10:16.421  INFO 10912 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-27 14:10:16.957  INFO 10912 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c1e40d9, org.springframework.security.web.context.SecurityContextPersistenceFilter@69bc4024, org.springframework.security.web.header.HeaderWriterFilter@62054faf, org.springframework.security.web.authentication.logout.LogoutFilter@20184ade, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@68df8c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24f177f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@28e48b65, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b50c21, org.springframework.security.web.session.SessionManagementFilter@20f63ddc, org.springframework.security.web.access.ExceptionTranslationFilter@4e5364a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@25589735]
+2018-12-27 14:10:17.042  INFO 10912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-12-27 14:10:17.058  INFO 10912 --- [main] c.c.s.SpringSecurityApplication          : Started SpringSecurityApplication in 9.1 seconds (JVM running for 10.185)
+2018-12-27 14:10:19.971  INFO 10912 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2018-12-27 14:10:19.971  INFO 10912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2018-12-27 14:10:19.987  INFO 10912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2018-12-27 14:10:20.218  INFO 10912 --- [http-nio-8080-exec-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-12-27 14:10:32.056  INFO 10912 --- [http-nio-8080-exec-5] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2018-12-27 14:10:32.072  INFO 10912 --- [http-nio-8080-exec-5] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
