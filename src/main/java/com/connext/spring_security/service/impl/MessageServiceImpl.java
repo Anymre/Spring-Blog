@@ -137,10 +137,10 @@ public class MessageServiceImpl implements MessageService {
 
     public List<Message> sort(List<Message> list) {
         Collections.sort(list, ((o1, o2) -> {
-            if (o1.getCommentTime().before(o2.getCommentTime())) {
-                return 1;
-            } else {
+            if (o1.getCommentTime().after(o2.getCommentTime())) {
                 return -1;
+            } else {
+                return 1;
             }
         }));
         return list;

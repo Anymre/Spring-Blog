@@ -16,7 +16,7 @@
                th:text="'Publish: '+${#dates.format(message.createTime, 'yyyy/MMM/dd HH:mm')}+'   By: '+${message.user.nickname}"></p>
             <p th:text="${message.context}"></p>
             <p class="blog-post-meta"
-               th:text="'评论数: '+${message.comments.size()}+'  最后评论时间: '+${#dates.format(message.commentTime, 'yyyy/MMM/dd HH:mm')}"></p>
+               th:if="${message.comments.size()} gt '0'" th:text="'评论数: '+${message.comments.size()}+'  最后评论时间: '+${#dates.format(message.commentTime, 'yyyy/MMM/dd HH:mm')}"></p>
         </div>
         <div class="panel panel-default" th:each="i:${message.comments}">
             <div class="panel-body">

@@ -9,7 +9,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
   datasource:
-    url: jdbc:mysql://120.77.45.136:3306/spring_security?characterEncoding=UTF-8&nullCatalogMeansCurrent=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://120.77.45.136:3306/spring_security?characterEncoding=UTF-8&nullCatalogMeansCurrent=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
     username: springuser
     password: 123456
 
@@ -17,3 +17,13 @@ spring:
     view:
       prefix: classpath:/templates/
       suffix: .html
+logging:
+  level:
+    com:
+      connext:
+        spring_security:
+          dao: info
+
+  #  path: /Spirng/log
+  file: log/spring-security.log
+  file.max-size: 10MB

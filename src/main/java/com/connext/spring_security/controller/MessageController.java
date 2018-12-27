@@ -1,17 +1,12 @@
 package com.connext.spring_security.controller;
 
-import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.service.MessageService;
 import com.connext.spring_security.service.UserService;
 import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @Author: Marcus
@@ -22,23 +17,24 @@ import java.util.List;
 @RequestMapping("/message")
 public class MessageController {
     private final MessageService messageService;
-    private final UserService userService;
 
     @Autowired
-    public MessageController(MessageService messageService, UserService userService) {
+    public MessageController(MessageService messageService) {
         this.messageService = messageService;
-        this.userService = userService;
     }
+
     @GetMapping("/index/{page}")
-    public String index(Model model,@PathVariable String page){
-        model.addAttribute("messages",messageService.findAll(page));
+    public String index(Model model, @PathVariable String page) {
+        model.addAttribute("messages", messageService.findAll(page));
         return "index";
     }
+
     @GetMapping("/index/admin/{page}")
-    public String indexAdmin(Model model,@PathVariable String page){
-        model.addAttribute("messages",messageService.findAll(page));
+    public String indexAdmin(Model model, @PathVariable String page) {
+        model.addAttribute("messages", messageService.findAll(page));
         return "index_admin";
     }
+
     @GetMapping("/{id}")
     public String getMessage(@PathVariable Integer id, Model model) {
         model.addAttribute("message", messageService.findMessage(id));
@@ -46,19 +42,21 @@ public class MessageController {
     }
 
     @PostMapping("/add")
-    public String addMessage(@RequestParam String title,@RequestParam String context) {
-        boolean result = messageService.addMessage(title,context);
+    public String addMessage(@RequestParam String title, @RequestParam String context) {
+        boolean result = messageService.addMessage(title, context.substring(0,200));
         return "redirect:/message/my";
     }
+
     @GetMapping("/{id}/change")
-    public String getChangeMessage(@PathVariable Integer id,Model model){
-        model.addAttribute("message",messageService.findMessage(id));
+    public String getChangeMessage(@PathVariable Integer id, Model model) {
+        model.addAttribute("message", messageService.findMessage(id));
         return "message_add_edit";
     }
+
     @PostMapping("/{id}/change")
-    public String changeMessage(@PathVariable Integer id,@RequestParam String title,@RequestParam String context) {
-        boolean result = messageService.changeMessage(id,title,context);
-        if(result){
+    public String changeMessage(@PathVariable Integer id, @RequestParam String title, @RequestParam String context) {
+        boolean result = messageService.changeMessage(id, title, context);
+        if (result) {
             return "redirect:/message/my";
         }
         return "redirect:/error";
