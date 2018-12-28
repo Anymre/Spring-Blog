@@ -84,25 +84,25 @@ public class MessageServiceImpl implements MessageService {
     public boolean changeMessage(Integer id, String title, String context) {
         String authority = "message_change";
         Optional<Message> oldMessage = messageRepository.findById(id);
-        boolean canOrNot = oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority));
-        if (canOrNot) {
+        //boolean canOrNot = oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority));
+        //if (canOrNot) {
             oldMessage.get().setTitle(title);
             oldMessage.get().setContext(context);
             messageRepository.save(oldMessage.get());
             return true;
-        }
-        return false;
+        //}
+        //return false;
     }
 
     @Override
     public boolean deleteMessage(Integer messageId) {
-        String authority = "message_delete";
+//        String authority = "message_delete";
         Optional<Message> oldMessage = messageRepository.findById(messageId);
-        if (oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority))) {
+        //if (oldMessage.isPresent() && (getUser().getId().equals(oldMessage.get().getUser().getId()) || userisHasAuthority(authority))) {
             messageRepository.deleteById(messageId);
             return true;
-        }
-        return false;
+        //}
+        //return false;
     }
 
     @Override

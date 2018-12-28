@@ -1,6 +1,8 @@
 package com.connext.spring_security.controller;
 
+import com.connext.spring_security.entity.Message;
 import com.connext.spring_security.service.MessageService;
+import com.connext.spring_security.util.GetUser;
 import com.connext.spring_security.util.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/message")
 public class MessageController {
     private final MessageService messageService;
+    private final GetUser getUser;
 
     @Autowired
-    public MessageController(MessageService messageService) {
+    public MessageController(MessageService messageService, GetUser getUser) {
         this.messageService = messageService;
+        this.getUser = getUser;
     }
 
     @GetMapping("/index/{page}")
@@ -42,7 +46,7 @@ public class MessageController {
 
     @PostMapping("/add")
     public String addMessage(@RequestParam String title, @RequestParam String context) {
-        messageService.addMessage(title, context.substring(0,200));
+        messageService.addMessage(title, context.substring(0, 200));
         return "redirect:/message/my";
     }
 
@@ -54,8 +58,10 @@ public class MessageController {
 
     @PostMapping("/{id}/change")
     public String changeMessage(@PathVariable Integer id, @RequestParam String title, @RequestParam String context) {
-        boolean result = messageService.changeMessage(id, title, context);
-        if (result) {
+        Message message = messageService.findMessage(id);
+        String authority = "message_change";
+        if ((getUser.getUserId().equals(message.getUser().getId()) || getUser.userHasAuthority(authority))) {
+            messageService.changeMessage(id, title, context);
             return "redirect:/message/my";
         }
         return "redirect:/error";
@@ -64,8 +70,13 @@ public class MessageController {
     @DeleteMapping("/{id}")
     @ResponseBody
     public String deleteMessage(@PathVariable Integer id) {
-        boolean result = messageService.deleteMessage(id);
-        return ReturnState.returnState(result);
+        Message message = messageService.findMessage(id);
+        String authority = "message_delete";
+        if ((getUser.getUserId().equals(message.getUser().getId()) || getUser.userHasAuthority(authority))) {
+            messageService.deleteMessage(id);
+            return ReturnState.returnState(true);
+        }
+        return ReturnState.returnState(false);
     }
 
     @GetMapping("/my")

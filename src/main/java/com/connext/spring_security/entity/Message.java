@@ -44,17 +44,4 @@ public class Message {
         this.context = context;
         this.user=user;
     }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", context='" + context + '\'' +
-                ", createTime=" + createTime +
-                ", modifiedTime=" + modifiedTime +
-                ", commentTime=" + commentTime +
-                ", user=" + user.getNickname() +
-                '}';
-    }
 }
