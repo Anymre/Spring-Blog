@@ -13,7 +13,8 @@ import java.util.TimeZone;
  * @Date: 2018/12/21 10:18
  * @Version 1.0
  */
-@SpringBootApplication//(exclude = {SecurityAutoConfiguration.class})
+//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 @EnableJpaAuditing
 public class SpringSecurityApplication {
     public static void main(String[] args) {

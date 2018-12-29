@@ -29,6 +29,9 @@ public class GetUser {
     public Integer getUserId() {
         return userRepository.findByPhone(user().getUsername()).get().getId();
     }
+    public com.connext.spring_security.entity.User getUser(){
+        return userRepository.findByPhone(user().getUsername()).get();
+    }
 
     public boolean userHasAuthority(String authority) {
         GrantedAuthority grantedAuthority = new UserAuthority(authority);

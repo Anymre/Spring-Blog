@@ -46,7 +46,7 @@ public class MessageController {
 
     @PostMapping("/add")
     public String addMessage(@RequestParam String title, @RequestParam String context) {
-        messageService.addMessage(title, context.substring(0, 200));
+        messageService.addMessage(title, context);
         return "redirect:/message/my";
     }
 
